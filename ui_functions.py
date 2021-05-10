@@ -143,10 +143,11 @@ class UIFunctions(MainWindow):
         return GLOBAL_STATE
 
     def onAddCompanyButtonClick(self):
-        print(self.ui.companyInput_lineEdit.text())
         cursorQuery = self.ui.companyInput_lineEdit.text()
+        ticker = stockFunctions.returnTickerSymbol(self, cursorQuery)
+        print(cursorQuery, ticker)
         try:
-            stockFunctions.returnCompanyDetails(self, cursorQuery)
+            stockFunctions.returnCompanyDetails(self, ticker, cursorQuery)
         except Error as e:
             setDebugLine(self, e, debugRed)
         self.ui.companyInput_lineEdit.setText("")

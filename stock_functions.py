@@ -1,12 +1,13 @@
 import yfinance as yf
 import time
 import ui_functions
+import requests
 
 class stockFunctions():
     
-    def comp_summary(self, YFcursor):
-        lst=(YFcursor.info['longBusinessSummary']).split('.')
-        return ('.'.join(lst[:2]))
+    # def comp_summary(self, YFcursor):
+    #     lst=(YFcursor.info['longBusinessSummary']).split('.')
+    #     return ('.'.join(lst[:2]))
 
     # def full_info():
     #     return (cursor.info)
@@ -52,9 +53,9 @@ class stockFunctions():
         return (YFcursor.info['open'])
 
     # RETURNS ALL THE REQUIRED OUTPUT OF THE FUNTIONS FOR WRITING TO THE DATABASE
-    def returnCompanyDetails(self, companyName):
-        cursor = yf.Ticker(companyName)
-        company = str(companyName)
+    def returnCompanyDetails(self, Ticker, CompanyName):
+        cursor = yf.Ticker(Ticker)
+        company = str(CompanyName)
         currentPrice = str(stockFunctions.get_current_price(self, cursor)) + "$"
         change = str(stockFunctions.get_price_change(self, cursor))
         change_p = str(stockFunctions.get_price_change_percentage(self, cursor)) + "%"
@@ -63,4 +64,9 @@ class stockFunctions():
         result = ((company, currentPrice, change, change_p, open_p, lastClose_p))
         print(result)
         ui_functions.UIFunctions.setDebugLine(self, result, ui_functions.debugGreen)
+    
+    def returnTickerSymbol(self, CompanyName):
+        url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + CompanyName + "&lang=en"
+        r = requests.get(url)
+        return r.json()["ResultSet"]["Result"][0]["symbol"]
     #----------------------------------------------
