@@ -5,6 +5,8 @@ import time
 
 GLOBAL_STATE = 0
 
+SEARCH_STATE = 0
+
 # DEBUG LINE STYLESHEETS
 debugRed = u"color: rgb(255, 84, 84);"
 debugGreen = u"color: rgb(126, 255, 90);"
@@ -144,13 +146,31 @@ class UIFunctions(MainWindow):
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
-        ticker = stockFunctions.returnTickerSymbol(self, cursorQuery)
-        print(cursorQuery, ticker)
-        try:
-            stockFunctions.returnCompanyDetails(self, ticker, cursorQuery)
-        except Error as e:
-            setDebugLine(self, e, debugRed)
+
+        if(SEARCH_STATE == 1):
+            ticker = stockFunctions.returnTickerSymbol(self, cursorQuery)
+            print(cursorQuery, ticker, "searchstate:" + str(SEARCH_STATE))
+            try:
+                stockFunctions.returnCompanyDetails(self, ticker, cursorQuery)
+            except Error as e:
+                print(e)
+        elif(SEARCH_STATE == 0):
+            print(cursorQuery, "searchstate:" + str(SEARCH_STATE))
+            try:
+                stockFunctions.returnCompanyDetails(self, cursorQuery, cursorQuery)
+            except Error as e:
+                print(e)
+        
         self.ui.companyInput_lineEdit.setText("")
+
+    def setSearchStateCheckboxText(self):
+        global SEARCH_STATE
+        if(self.ui.InputType_checkBox.checkState()):
+            self.ui.InputType_checkBox.setText("Search by: Name")
+            SEARCH_STATE = 1
+        else:
+            self.ui.InputType_checkBox.setText("Search by: Ticker")
+            SEARCH_STATE = 0
 
     def setDebugLine(self, content, style):
         self.ui.DebugText.setStyleSheet(style)

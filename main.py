@@ -47,6 +47,7 @@ class MainWindow(QMainWindow):
         
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
         self.ui.addToTable_pushButton.clicked.connect(lambda: UIFunctions.onAddCompanyButtonClick(self))
+        self.ui.InputType_checkBox.stateChanged.connect(lambda: UIFunctions.setSearchStateCheckboxText(self))
         
         # PAGE 2
         self.ui.Page_btn_2.clicked.connect(lambda: UIFunctions.setPage2(self))

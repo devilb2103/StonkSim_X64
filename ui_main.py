@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testBseced.ui'
+## Form generated from reading UI file 'testpZJeDj.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -319,7 +319,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(60, 30, 60, 30)
-        self.Search_parent = QFrame(self.table_page)
+        self.Table_page_Topbar = QFrame(self.table_page)
+        self.Table_page_Topbar.setObjectName(u"Table_page_Topbar")
+        self.Table_page_Topbar.setFrameShape(QFrame.NoFrame)
+        self.Table_page_Topbar.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_8 = QHBoxLayout(self.Table_page_Topbar)
+        self.horizontalLayout_8.setSpacing(0)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.Search_parent = QFrame(self.Table_page_Topbar)
         self.Search_parent.setObjectName(u"Search_parent")
         self.Search_parent.setMinimumSize(QSize(450, 50))
         self.Search_parent.setMaximumSize(QSize(390, 50))
@@ -368,7 +376,72 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.addToTable_pushButton)
 
 
-        self.verticalLayout_8.addWidget(self.Search_parent, 0, Qt.AlignLeft)
+        self.horizontalLayout_8.addWidget(self.Search_parent)
+
+        self.SwitchSearchType_Parent = QFrame(self.Table_page_Topbar)
+        self.SwitchSearchType_Parent.setObjectName(u"SwitchSearchType_Parent")
+        font1 = QFont()
+        font1.setFamily(u"Roboto Thin")
+        self.SwitchSearchType_Parent.setFont(font1)
+        self.SwitchSearchType_Parent.setStyleSheet(u"")
+        self.SwitchSearchType_Parent.setFrameShape(QFrame.NoFrame)
+        self.SwitchSearchType_Parent.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_9 = QHBoxLayout(self.SwitchSearchType_Parent)
+        self.horizontalLayout_9.setSpacing(0)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(30, 0, 0, 0)
+        self.InputType_checkBox = QCheckBox(self.SwitchSearchType_Parent)
+        self.InputType_checkBox.setObjectName(u"InputType_checkBox")
+        font2 = QFont()
+        font2.setFamily(u"Roboto Thin")
+        font2.setPointSize(16)
+        self.InputType_checkBox.setFont(font2)
+        self.InputType_checkBox.setStyleSheet(u"QCheckBox::indicator:checked\n"
+"{\n"
+"	border : 2px solid white;\n"
+"	width : 20px;\n"
+"	height : 20px;\n"
+"	border-radius : 12px;\n"
+"	background-color: rgb(245, 245, 245);\n"
+"}\n"
+"QCheckBox::indicator:checked:pressed\n"
+"{\n"
+"	border : 2px solid white;\n"
+"	width : 20px;\n"
+"	height : 20px;\n"
+"	border-radius : 12px;\n"
+"	background-color: rgb(45, 45, 45);\n"
+"}\n"
+"QCheckBox::indicator:unchecked:pressed\n"
+"{\n"
+"	border : 2px solid white;\n"
+"	width : 20px;\n"
+"	height : 20px;\n"
+"	border-radius : 12px;\n"
+"	background-color: rgb(45, 45, 45);\n"
+"}\n"
+"QCheckBox::indicator:unchecked\n"
+"{\n"
+"	border : 2px solid white;\n"
+"	width : 20px;\n"
+"	height : 20px;\n"
+"	border-radius : 12px;\n"
+"	background-color: rgb(35, 35, 35);\n"
+"}\n"
+"QCheckBox\n"
+"{\n"
+"	color:white;\n"
+"}")
+
+        self.horizontalLayout_9.addWidget(self.InputType_checkBox)
+
+
+        self.horizontalLayout_8.addWidget(self.SwitchSearchType_Parent, 0, Qt.AlignRight|Qt.AlignVCenter)
+
+        self.SwitchSearchType_Parent.raise_()
+        self.Search_parent.raise_()
+
+        self.verticalLayout_8.addWidget(self.Table_page_Topbar, 0, Qt.AlignLeft|Qt.AlignVCenter)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -420,10 +493,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.label_5 = QLabel(self.graphs_page)
         self.label_5.setObjectName(u"label_5")
-        font1 = QFont()
-        font1.setFamily(u"Roboto Thin")
-        font1.setPointSize(24)
-        self.label_5.setFont(font1)
+        font3 = QFont()
+        font3.setFamily(u"Roboto Thin")
+        font3.setPointSize(24)
+        self.label_5.setFont(font3)
         self.label_5.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_5.setAlignment(Qt.AlignCenter)
 
@@ -438,7 +511,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.label_6 = QLabel(self.accounts_page)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font1)
+        self.label_6.setFont(font3)
         self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignCenter)
 
@@ -461,10 +534,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(15, 0, 0, 0)
         self.DebugText = QLabel(self.bottom_frame)
         self.DebugText.setObjectName(u"DebugText")
-        font2 = QFont()
-        font2.setFamily(u"Roboto Light")
-        font2.setPointSize(10)
-        self.DebugText.setFont(font2)
+        font4 = QFont()
+        font4.setFamily(u"Roboto Light")
+        font4.setPointSize(10)
+        self.DebugText.setFont(font4)
         self.DebugText.setStyleSheet(u"")
 
         self.horizontalLayout_5.addWidget(self.DebugText)
@@ -522,6 +595,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.companyInput_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Company Name", None))
         self.addToTable_pushButton.setText("")
+        self.InputType_checkBox.setText(QCoreApplication.translate("MainWindow", u"Search by: Ticker", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Company", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)

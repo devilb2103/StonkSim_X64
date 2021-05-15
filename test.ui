@@ -686,29 +686,17 @@ QPushButton:hover {
               <property name="bottomMargin">
                <number>30</number>
               </property>
-              <item alignment="Qt::AlignLeft">
-               <widget class="QFrame" name="Search_parent">
-                <property name="minimumSize">
-                 <size>
-                  <width>450</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>390</width>
-                  <height>50</height>
-                 </size>
-                </property>
+              <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+               <widget class="QFrame" name="Table_page_Topbar">
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
                  <property name="spacing">
-                  <number>9</number>
+                  <number>0</number>
                  </property>
                  <property name="leftMargin">
                   <number>0</number>
@@ -723,62 +711,98 @@ QPushButton:hover {
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QLineEdit" name="companyInput_lineEdit">
+                  <widget class="QFrame" name="Search_parent">
                    <property name="minimumSize">
                     <size>
-                     <width>320</width>
-                     <height>45</height>
+                     <width>450</width>
+                     <height>50</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>380</width>
-                     <height>45</height>
+                     <width>390</width>
+                     <height>50</height>
                     </size>
                    </property>
-                   <property name="font">
-                    <font>
-                     <family>Roboto Thin</family>
-                     <pointsize>18</pointsize>
-                    </font>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true">QLineEdit{
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_7">
+                    <property name="spacing">
+                     <number>9</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLineEdit" name="companyInput_lineEdit">
+                      <property name="minimumSize">
+                       <size>
+                        <width>320</width>
+                        <height>45</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>380</width>
+                        <height>45</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Roboto Thin</family>
+                        <pointsize>18</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLineEdit{
 	background-color: rgb(35, 35, 35);
 	border-radius: 9px;
 	color: rgb(255, 255, 255);
 }</string>
-                   </property>
-                   <property name="maxLength">
-                    <number>20</number>
-                   </property>
-                   <property name="cursorPosition">
-                    <number>0</number>
-                   </property>
-                   <property name="placeholderText">
-                    <string>Company Name</string>
-                   </property>
-                   <property name="cursorMoveStyle">
-                    <enum>Qt::LogicalMoveStyle</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="addToTable_pushButton">
-                   <property name="minimumSize">
-                    <size>
-                     <width>45</width>
-                     <height>45</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>45</width>
-                     <height>45</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton{
+                      </property>
+                      <property name="maxLength">
+                       <number>20</number>
+                      </property>
+                      <property name="cursorPosition">
+                       <number>0</number>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Company Name</string>
+                      </property>
+                      <property name="cursorMoveStyle">
+                       <enum>Qt::LogicalMoveStyle</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="addToTable_pushButton">
+                      <property name="minimumSize">
+                       <size>
+                        <width>45</width>
+                        <height>45</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>45</width>
+                        <height>45</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
 	background-color: rgb(35, 35, 35);
 	border: 0px solid;
@@ -789,23 +813,114 @@ QPushButton:pressed {
 	border-radius: 22px;
 }
 </string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>Resources/icons8-plus-24.png</normaloff>Resources/icons8-plus-24.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>24</width>
+                        <height>24</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignRight|Qt::AlignVCenter">
+                  <widget class="QFrame" name="SwitchSearchType_Parent">
+                   <property name="font">
+                    <font>
+                     <family>Roboto Thin</family>
+                    </font>
                    </property>
-                   <property name="text">
-                    <string/>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
-                   <property name="icon">
-                    <iconset>
-                     <normaloff>Resources/icons8-plus-24.png</normaloff>Resources/icons8-plus-24.png</iconset>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
                    </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>24</width>
-                     <height>24</height>
-                    </size>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
                    </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>30</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QCheckBox" name="InputType_checkBox">
+                      <property name="font">
+                       <font>
+                        <family>Roboto Thin</family>
+                        <pointsize>16</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox::indicator:checked
+{
+	border : 2px solid white;
+	width : 20px;
+	height : 20px;
+	border-radius : 12px;
+	background-color: rgb(245, 245, 245);
+}
+QCheckBox::indicator:checked:pressed
+{
+	border : 2px solid white;
+	width : 20px;
+	height : 20px;
+	border-radius : 12px;
+	background-color: rgb(45, 45, 45);
+}
+QCheckBox::indicator:unchecked:pressed
+{
+	border : 2px solid white;
+	width : 20px;
+	height : 20px;
+	border-radius : 12px;
+	background-color: rgb(45, 45, 45);
+}
+QCheckBox::indicator:unchecked
+{
+	border : 2px solid white;
+	width : 20px;
+	height : 20px;
+	border-radius : 12px;
+	background-color: rgb(35, 35, 35);
+}
+QCheckBox
+{
+	color:white;
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>Search by: Ticker</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                 </layout>
+                <zorder>SwitchSearchType_Parent</zorder>
+                <zorder>Search_parent</zorder>
                </widget>
               </item>
               <item>
