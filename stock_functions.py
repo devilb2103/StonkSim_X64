@@ -65,6 +65,28 @@ class stockFunctions():
         print(result)
         ui_functions.UIFunctions.setDebugLine(self, result, ui_functions.debugGreen)
     
+    #----------------------------------------------------------------------------------
+    
+    ## RAPID API - ALPHA VANTAGE
+    # RETURNS ALL THE REQUIRED OUTPUT OF THE FUNTIONS FOR WRITING TO THE DATABASE
+    def returnCompanyDetails2(self, Ticker, companyName):
+        url = "https://alpha-vantage.p.rapidapi.com/query"
+        querystring = {"function":"GLOBAL_QUOTE","symbol":str(Ticker)}
+        headers = {
+            'x-rapidapi-key': "b74bc782femsh2b453fc4f4a1d9ep14a862jsnf12343e8143e",
+            'x-rapidapi-host': "alpha-vantage.p.rapidapi.com"
+        }
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        dictionary = response.json()["Global Quote"]
+        
+        result =  ((companyName, dictionary["05. price"], dictionary["09. change"], 
+                    dictionary["10. change percent"], dictionary["02. open"], 
+                    dictionary["08. previous close"]))
+        
+        print(result)
+        ui_functions.UIFunctions.setDebugLine(self, result, ui_functions.debugGreen)
+
+    #----------------------------------------------------------------------------------
     def returnTickerSymbol(self, CompanyName):
         url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + CompanyName + "&lang=en"
         r = requests.get(url)

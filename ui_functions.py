@@ -151,13 +151,13 @@ class UIFunctions(MainWindow):
             ticker = stockFunctions.returnTickerSymbol(self, cursorQuery)
             print(cursorQuery, ticker, "searchstate:" + str(SEARCH_STATE))
             try:
-                stockFunctions.returnCompanyDetails(self, ticker, cursorQuery)
+                stockFunctions.returnCompanyDetails2(self, ticker, cursorQuery)
             except Error as e:
                 print(e)
         elif(SEARCH_STATE == 0):
             print(cursorQuery, "searchstate:" + str(SEARCH_STATE))
             try:
-                stockFunctions.returnCompanyDetails(self, cursorQuery, cursorQuery)
+                stockFunctions.returnCompanyDetails2(self, cursorQuery, cursorQuery)
             except Error as e:
                 print(e)
         
