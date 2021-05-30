@@ -1,4 +1,5 @@
 import sys
+import subprocess
 import platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent, QThread)
@@ -10,6 +11,9 @@ from ui_main import Ui_MainWindow
 
 # IMPORT FUNCTIONS
 from ui_functions import *
+from json_functions import *
+
+terminateThread = False
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -33,6 +37,12 @@ class MainWindow(QMainWindow):
 
         ## MYSQL CONNECTION
         sqlFunctions.initSQL(self)
+
+        ## INITIALIZE THE JSON
+        JSONFuntions.createJSON(self)
+        threadProcess = subprocess.Popen(["python", "main_thread.py"])
+        if(terminateThread):
+            threadProcess.terminate()
 
         ## TOGGLE/BURGER MENU
         ########################################################################

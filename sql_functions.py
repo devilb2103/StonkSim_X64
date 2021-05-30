@@ -8,12 +8,13 @@ con = None
 sqlCur = None
 
 createTableCommand = '''create table IF NOT EXISTS companyData
-                (S_Company char(40) primary key,
-                S_CurrentPrice char(10),
-                S_Change char(10),
-                S_ChangeP char(10),
-                S_Open char(10),
-                S_PreviousClose char(10));'''
+                (S_Ticker varchar(15) primary key,
+                S_Company varchar(40),
+                S_CurrentPrice varchar(10),
+                S_Change varchar(10),
+                S_ChangeP varchar(10),
+                S_Open varchar(10),
+                S_PreviousClose varchar(10));'''
 
 class sqlFunctions(MainWindow):
 

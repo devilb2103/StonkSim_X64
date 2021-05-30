@@ -1,7 +1,8 @@
+import requests
+from time import sleep
 from main import *
-from stock_functions import *
+from json_functions import *
 from sql_functions import *
-import time
 
 GLOBAL_STATE = 0
 
@@ -72,7 +73,7 @@ class UIFunctions(MainWindow):
 
         ## TITLEBAR BUTTONS
         self.ui.closeBtn.setToolTip("Close")
-        self.ui.closeBtn.clicked.connect(lambda: self.close())
+        self.ui.closeBtn.clicked.connect(lambda: UIFunctions.closeProgram(self))
         
         self.ui.maximizeBtn.clicked.connect(lambda: UIFunctions.maximize_restore(self))
         
@@ -148,20 +149,17 @@ class UIFunctions(MainWindow):
         cursorQuery = self.ui.companyInput_lineEdit.text()
 
         if(SEARCH_STATE == 1):
-            ticker = stockFunctions.returnTickerSymbol(self, cursorQuery)
-            print(cursorQuery, ticker, "searchstate:" + str(SEARCH_STATE))
-            try:
-                stockFunctions.returnCompanyDetails(self, ticker, cursorQuery)
-            except Error as e:
-                print(e)
+            ticker = JSONFuntions.returnTickerSymbol(self, cursorQuery)
+            companyName = str(JSONFuntions.returnCompanyName(self, str(ticker))).capitalize()
+            print(companyName, ticker, "searchstate:" + str(SEARCH_STATE))
+            JSONFuntions.writeToCompanyList(self, companyName, ticker, True)
+
         elif(SEARCH_STATE == 0):
-            print(cursorQuery, "searchstate:" + str(SEARCH_STATE))
-            try:
-                stockFunctions.returnCompanyDetails(self, cursorQuery, cursorQuery)
-            except Error as e:
-                print(e)
-        
-        self.ui.companyInput_lineEdit.setText("")
+            companyName = str(JSONFuntions.returnCompanyName(self, str(cursorQuery))).capitalize()
+            ticker = cursorQuery.upper()
+            print(companyName, cursorQuery.upper(), "searchstate:" + str(SEARCH_STATE))
+            JSONFuntions.writeToCompanyList(self, companyName, ticker, True)
+
 
     def setSearchStateCheckboxText(self):
         global SEARCH_STATE
@@ -175,3 +173,9 @@ class UIFunctions(MainWindow):
     def setDebugLine(self, content, style):
         self.ui.DebugText.setStyleSheet(style)
         self.ui.DebugText.setText("Debug: " + str(content))
+
+    def closeProgram(self):
+        JSONFuntions.deleteJson(self)
+        terminateThread = True
+        sleep(3)
+        self.close()
