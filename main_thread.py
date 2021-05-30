@@ -16,12 +16,10 @@ def thread_loop():
         
         #add all company tickers to company dictionary from DB
         sqlThreadFunctions.refreshDBCompanyDictionary(sqlThreadFunctions)
-        print(databaseCompanyList)
 
         #iterate all the values in the dict and update db
         for i in databaseCompanyList.keys():
             result = stockFunctions.returnCompanyDetails(stockFunctions, i)
-            print(result)
             sqlThreadFunctions.updateRecord(sqlThreadFunctions, i, result[0], result[1], result[2], result[3], result[4])
 
         #update db from json lists
@@ -37,32 +35,3 @@ def thread_loop():
 if __name__ == '__main__':
     sqlthread = threading.Thread(target=thread_loop)
     sqlthread.start()
-    
-
-# class func1(Thread):
-    
-#     def __init__(self,Ticker,companyName):
-#       Thread.__init__(self)
-      
-#       self.Ticker = Ticker
-#       self.companyName=companyName
-      
-    
-    
-#     def run(self):
-#         while True:
-#             print(stockFunctions.returnCompanyDetails(self, self.Ticker, self.companyName))
-#             sleep(20)
-
-# def thread_loop():
-#   for i in threadlist:
-#       a,b=i
-#       thread=func1(a,b)
-#       thread.start()
-#       sleep(3)
-
-#__main__
-# companyName=input()
-# Ticker=stockFunctions.returnTickerSymbol(stockFunctions,companyName)
-# threadlist.append((Ticker,companyName))
-# thread_loop()

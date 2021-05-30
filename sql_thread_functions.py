@@ -84,8 +84,8 @@ class sqlThreadFunctions():
         global databaseCompanyList
         cmd = "select * from companydata;"
         sqlCur.execute(cmd)
-        data2 = sqlCur.fetchall()
-        for i in data2:
+        data = sqlCur.fetchall()
+        for i in data:
             databaseCompanyList[i[0]] = i[1]
 
 if __name__ == '__main__':

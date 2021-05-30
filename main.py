@@ -12,8 +12,10 @@ from ui_main import Ui_MainWindow
 # IMPORT FUNCTIONS
 from ui_functions import *
 from json_functions import *
+from sql_functions import *
 
 terminateThread = False
+canRefresh = False
 
 class MainWindow(QMainWindow):
     def __init__(self):

@@ -1,11 +1,8 @@
 import requests
-from time import sleep
 from main import *
 from json_functions import *
-from sql_functions import *
 
 GLOBAL_STATE = 0
-
 SEARCH_STATE = 0
 
 # DEBUG LINE STYLESHEETS
@@ -95,7 +92,7 @@ class UIFunctions(MainWindow):
         tableHeader.setSectionResizeMode(5, QtWidgets.QHeaderView.Stretch)
 
         ## HIDE VERTICAL HEADER AND ALSO ADD NUMBER OF ROWS (FOR REFERENCE)
-        self.ui.tableWidget.setRowCount(3)
+        #self.ui.tableWidget.setRowCount(3)
         self.ui.tableWidget.verticalHeader().hide()
 
     def maximize_restore(self):
@@ -159,7 +156,7 @@ class UIFunctions(MainWindow):
             ticker = cursorQuery.upper()
             print(companyName, cursorQuery.upper(), "searchstate:" + str(SEARCH_STATE))
             JSONFuntions.writeToCompanyList(self, companyName, ticker, True)
-
+        sqlFunctions.getTableData(self)
 
     def setSearchStateCheckboxText(self):
         global SEARCH_STATE
@@ -173,9 +170,15 @@ class UIFunctions(MainWindow):
     def setDebugLine(self, content, style):
         self.ui.DebugText.setStyleSheet(style)
         self.ui.DebugText.setText("Debug: " + str(content))
+    
+    def refreshUItable(self, table):
+        self.ui.tableWidget.setRowCount(len(list(table)))
+        # for row in range(self.ui.tableWidget.rowCount()):
+        #     for column in range(self.ui.tableWidget.columnCount()):
+        #         cell = self.ui.tableWidget.item(row, column).text()
+        #         cell = table[row][column]
 
     def closeProgram(self):
         JSONFuntions.deleteJson(self)
         terminateThread = True
-        sleep(3)
         self.close()

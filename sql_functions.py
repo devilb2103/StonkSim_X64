@@ -1,11 +1,12 @@
 import mysql.connector as sql
 import mysql.connector.errors as Error
-from main import MainWindow
 
 isConnected = False
 
 con = None
 sqlCur = None
+
+table = None
 
 createTableCommand = '''create table IF NOT EXISTS companyData
                 (S_Ticker varchar(15) primary key,
@@ -16,8 +17,8 @@ createTableCommand = '''create table IF NOT EXISTS companyData
                 S_Open varchar(10),
                 S_PreviousClose varchar(10));'''
 
-class sqlFunctions(MainWindow):
-
+class sqlFunctions():
+    
     ## INITIALIZES CONNECTION
     def initCon(self):
         global con
@@ -47,6 +48,7 @@ class sqlFunctions(MainWindow):
         global con
         if(isConnected):
             if(con != None):
+                global sqlCur
                 con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
                 sqlCur = con.cursor()
                 sqlCur.execute(createTableCommand)
@@ -54,6 +56,13 @@ class sqlFunctions(MainWindow):
         else:
             print("Connection Doesnt Exist")
     
+    def getTableData(self):
+        from ui_functions import UIFunctions
+        cmd = "select * from companydata;"
+        sqlCur.execute(cmd)
+        table = sqlCur.fetchall()
+        UIFunctions.refreshUItable(self, table)
+
     ## INITIALIZES THE SQL DATABASE FOR READ-WRITE--ABILITY
     def initSQL(self):
         sqlFunctions.initCon(self)
