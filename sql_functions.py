@@ -6,8 +6,6 @@ isConnected = False
 con = None
 sqlCur = None
 
-table = None
-
 createTableCommand = '''create table IF NOT EXISTS companyData
                 (S_Ticker varchar(15),
                 S_Company varchar(60) primary key,
@@ -57,14 +55,12 @@ class sqlFunctions():
             print("Connection Doesnt Exist")
     
     def getTableData(self):
-        from ui_functions import UIFunctions
         con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
         sqlCur = con.cursor()
         cmd = "select * from companydata;"
         sqlCur.execute(cmd)
         table = sqlCur.fetchall()
-        print(table)
-        UIFunctions.refreshUItable(self, table)
+        return table
 
     ## INITIALIZES THE SQL DATABASE FOR READ-WRITE--ABILITY
     def initSQL(self):

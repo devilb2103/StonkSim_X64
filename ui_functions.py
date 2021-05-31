@@ -1,4 +1,5 @@
 import requests
+from PySide2 import QtCore
 import random
 from main import *
 from json_functions import *
@@ -145,7 +146,6 @@ class UIFunctions(MainWindow):
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
-        sqlFunctions.getTableData(self)
         if(cursorQuery != ""):
             if(SEARCH_STATE == 1):
                 JSONFuntions.writeToCompanyList(self, cursorQuery, "lol123", True)
@@ -173,11 +173,14 @@ class UIFunctions(MainWindow):
                 self.ui.tableWidget.setItem(row, column, QTableWidgetItem(table[row][column + 1]))
                 self.ui.tableWidget.item(row, column).setTextAlignment(Qt.AlignHCenter)
                 currentItem = self.ui.tableWidget.item(row, column).text()
-                if(currentItem[0] == "-" and str(currentItem[1]).isdigit()):
-                    self.ui.tableWidget.item(row, column).setData(Qt.ForegroundRole.TextColorRole, QBrush(QColor(255, 0, 0)))
-                    self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(255, 0, 0)))
-                elif(str(currentItem[0]).isdigit()):
-                    self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 255, 0)))
+                if(column == 2 or column == 3):
+                    if("-" in currentItem):
+                        #self.ui.tableWidget.item(row, column).setData(Qt.ForegroundRole.TextColorRole, QBrush(QColor(255, 0, 0)))
+                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(255, 0, 0)))
+                    else:
+                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 255, 0)))
+        print("lol")
+        QtCore.QTimer.singleShot(4000, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self)))
 
     def closeProgram(self):
         JSONFuntions.deleteJson(self)

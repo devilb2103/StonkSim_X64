@@ -1,5 +1,8 @@
 import sys
+from time import sleep
 import subprocess
+import mysql.connector as sql
+import mysql.connector.errors as Error
 import platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent, QThread)
@@ -45,6 +48,8 @@ class MainWindow(QMainWindow):
         threadProcess = subprocess.Popen(["python", "main_thread.py"])
         if(terminateThread):
             threadProcess.terminate()
+        
+        UIFunctions.refreshUItable(self, sqlFunctions.getTableData(UIFunctions))
 
         ## TOGGLE/BURGER MENU
         ########################################################################
