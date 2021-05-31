@@ -1,4 +1,5 @@
 import requests
+import random
 from main import *
 from json_functions import *
 
@@ -144,19 +145,13 @@ class UIFunctions(MainWindow):
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
-
-        if(SEARCH_STATE == 1):
-            ticker = JSONFuntions.returnTickerSymbol(self, cursorQuery)
-            companyName = str(JSONFuntions.returnCompanyName(self, str(ticker))).capitalize()
-            print(companyName, ticker, "searchstate:" + str(SEARCH_STATE))
-            JSONFuntions.writeToCompanyList(self, companyName, ticker, True)
-
-        elif(SEARCH_STATE == 0):
-            companyName = str(JSONFuntions.returnCompanyName(self, str(cursorQuery))).capitalize()
-            ticker = cursorQuery.upper()
-            print(companyName, cursorQuery.upper(), "searchstate:" + str(SEARCH_STATE))
-            JSONFuntions.writeToCompanyList(self, companyName, ticker, True)
         sqlFunctions.getTableData(self)
+        if(cursorQuery != ""):
+            if(SEARCH_STATE == 1):
+                JSONFuntions.writeToCompanyList(self, cursorQuery, "lol123", True)
+            elif(SEARCH_STATE == 0):
+                JSONFuntions.writeToCompanyList(self, "lol123" + str(random.getrandbits(128)), cursorQuery, True)
+        self.ui.companyInput_lineEdit.setText("")
 
     def setSearchStateCheckboxText(self):
         global SEARCH_STATE
@@ -173,10 +168,16 @@ class UIFunctions(MainWindow):
     
     def refreshUItable(self, table):
         self.ui.tableWidget.setRowCount(len(list(table)))
-        # for row in range(self.ui.tableWidget.rowCount()):
-        #     for column in range(self.ui.tableWidget.columnCount()):
-        #         cell = self.ui.tableWidget.item(row, column).text()
-        #         cell = table[row][column]
+        for row in range(self.ui.tableWidget.rowCount()):
+            for column in range(self.ui.tableWidget.columnCount()):
+                self.ui.tableWidget.setItem(row, column, QTableWidgetItem(table[row][column + 1]))
+                self.ui.tableWidget.item(row, column).setTextAlignment(Qt.AlignHCenter)
+                currentItem = self.ui.tableWidget.item(row, column).text()
+                if(currentItem[0] == "-" and str(currentItem[1]).isdigit()):
+                    self.ui.tableWidget.item(row, column).setData(Qt.ForegroundRole.TextColorRole, QBrush(QColor(255, 0, 0)))
+                    self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(255, 0, 0)))
+                elif(str(currentItem[0]).isdigit()):
+                    self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 255, 0)))
 
     def closeProgram(self):
         JSONFuntions.deleteJson(self)

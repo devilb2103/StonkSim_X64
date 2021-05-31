@@ -1,8 +1,12 @@
 import json
+import requests
+from time import sleep
+import yfinance as yf
 import mysql.connector as sql
 import mysql.connector.errors as Error
 
 additems_list = []
+additems_list_filtered = []
 remitems_list = []
 databaseCompanyList = {}
 con = None
@@ -35,14 +39,40 @@ class sqlThreadFunctions():
         try:
             f = open('companyList.json')
             data = json.load(f)
-            #Code goes here:-
+            ##add list
             add_dict = data['add']
             additems_list = list(add_dict.items())
+            
+            ##remove list
             rem_dict = data['remove']
             remitems_list=list(rem_dict.items())
+            #close    
             f.close()
+        
         except FileNotFoundError:
             print("no json file!")
+    
+    def FilterRetrievedData(self):
+        for i in additems_list:
+            if((len(i) > 1) and ("lol123" in str(i[0]))):
+                print("searched by ticker")
+                newData = []
+                newData.append(sqlThreadFunctions.returnCompanyName(self, i[1]))
+                newData.append(sqlThreadFunctions.returnTickerSymbol(self, str(newData[0]).split()[0].replace(",", "")))
+                additems_list_filtered.append(newData)
+                print(additems_list_filtered)
+            elif((len(i) > 1) and ("lol123" in str(i[1]))):
+                print("searched by name")
+                newData = []
+                newData.append(i[0])
+                ticker = sqlThreadFunctions.returnTickerSymbol(self, newData[0])
+                newData.append(sqlThreadFunctions.returnCompanyName(self, ticker))
+                newData.append(ticker)
+                newData.pop(0)
+                additems_list_filtered.append(newData)
+                print(additems_list_filtered)
+        additems_list.clear()
+
 
     def updateRecord(self, ticker, currentPrice, change, changeP, Open, close):
         cmd = '''UPDATE companydata SET S_CurrentPrice = %s, S_Change = %s, S_ChangeP = %s, S_Open = %s, S_PreviousClose = %s WHERE S_Ticker = %s;'''
@@ -50,15 +80,17 @@ class sqlThreadFunctions():
         con.commit()
 
     def add_to_database(self):
-        for i in additems_list:
-            companyName = (str(i[0]).split()[0]).replace(",", "")
+        for i in additems_list_filtered:
+            companyName = (str(i[0]))
+            #companyName = (str(i[0]).split()[0]).replace(",", "")
             ticker = i[1]
             cmd = "INSERT INTO companydata (S_Ticker, S_Company) VALUES(%s,%s)"
             try:
                 sqlCur.execute(cmd, (ticker, companyName))
-            except Error.IntegrityError:
-                print("multiple entries lol")
+            except Error.IntegrityError as e:
+                print("multiple entries lol", e)
             con.commit()
+        additems_list_filtered.clear()
 
     def remove_from_database(self):
         for i in remitems_list:
@@ -87,6 +119,18 @@ class sqlThreadFunctions():
         data = sqlCur.fetchall()
         for i in data:
             databaseCompanyList[i[0]] = i[1]
+    
+    def returnTickerSymbol(self, CompanyName):
+        url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + CompanyName + "&lang=en"
+        r = requests.get(url)
+        return r.json()["ResultSet"]["Result"][0]["symbol"]
+        # try:
+        #     return r.json()["ResultSet"]["Result"][0]["symbol"]
+        # except Exception:
+        #     print("failed to return ticker symbol for company name input: ", CompanyName)
+
+    def returnCompanyName(self, ticker):
+        return(yf.Ticker(ticker).info["longName"])
 
 if __name__ == '__main__':
     from stock_functions import *

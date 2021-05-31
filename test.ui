@@ -938,6 +938,11 @@ QCheckBox
               </item>
               <item>
                <widget class="QTableWidget" name="tableWidget">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
                 <property name="focusPolicy">
                  <enum>Qt::NoFocus</enum>
                 </property>
@@ -952,6 +957,9 @@ QHeaderView::section{
 	background-color: rgb(30, 30, 30);
 	height: 30px;
 	border: 0px solid;
+}
+QTableView::item {
+	color: #FFFFFF;
 }</string>
                 </property>
                 <property name="frameShape">
@@ -976,30 +984,48 @@ QHeaderView::section{
                  <property name="text">
                   <string>Company</string>
                  </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
                 </column>
                 <column>
                  <property name="text">
                   <string>Current Price</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
                  </property>
                 </column>
                 <column>
                  <property name="text">
                   <string>Change</string>
                  </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
                 </column>
                 <column>
                  <property name="text">
                   <string>Change %</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
                  </property>
                 </column>
                 <column>
                  <property name="text">
                   <string>Open</string>
                  </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
                 </column>
                 <column>
                  <property name="text">
                   <string>Previous Close</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
                  </property>
                 </column>
                </widget>

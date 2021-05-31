@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testpZJeDj.ui'
+## Form generated from reading UI file 'testduuPZg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1013, 645)
+        MainWindow.resize(1140, 750)
         MainWindow.setMinimumSize(QSize(1000, 600))
         MainWindow.setStyleSheet(u"background-color: rgb(45, 45, 45);")
         self.centralwidget = QWidget(MainWindow)
@@ -451,18 +451,27 @@ class Ui_MainWindow(object):
         if (self.tableWidget.columnCount() < 6):
             self.tableWidget.setColumnCount(6)
         __qtablewidgetitem = QTableWidgetItem()
+        __qtablewidgetitem.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
+        __qtablewidgetitem1.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
+        __qtablewidgetitem2.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
+        __qtablewidgetitem3.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
+        __qtablewidgetitem4.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
+        __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.tableWidget.setObjectName(u"tableWidget")
+        font3 = QFont()
+        font3.setPointSize(11)
+        self.tableWidget.setFont(font3)
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
         self.tableWidget.setStyleSheet(u"QTableView{\n"
 "background-color: rgb(35, 35, 35);\n"
@@ -474,6 +483,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(30, 30, 30);\n"
 "	height: 30px;\n"
 "	border: 0px solid;\n"
+"}\n"
+"QTableView::item {\n"
+"	color: #FFFFFF;\n"
 "}")
         self.tableWidget.setFrameShape(QFrame.NoFrame)
         self.tableWidget.setAutoScroll(False)
@@ -493,10 +505,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.label_5 = QLabel(self.graphs_page)
         self.label_5.setObjectName(u"label_5")
-        font3 = QFont()
-        font3.setFamily(u"Roboto Thin")
-        font3.setPointSize(24)
-        self.label_5.setFont(font3)
+        font4 = QFont()
+        font4.setFamily(u"Roboto Thin")
+        font4.setPointSize(24)
+        self.label_5.setFont(font4)
         self.label_5.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_5.setAlignment(Qt.AlignCenter)
 
@@ -511,7 +523,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.label_6 = QLabel(self.accounts_page)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font3)
+        self.label_6.setFont(font4)
         self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignCenter)
 
@@ -534,10 +546,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(15, 0, 0, 0)
         self.DebugText = QLabel(self.bottom_frame)
         self.DebugText.setObjectName(u"DebugText")
-        font4 = QFont()
-        font4.setFamily(u"Roboto Light")
-        font4.setPointSize(10)
-        self.DebugText.setFont(font4)
+        font5 = QFont()
+        font5.setFamily(u"Roboto Light")
+        font5.setPointSize(10)
+        self.DebugText.setFont(font5)
         self.DebugText.setStyleSheet(u"")
 
         self.horizontalLayout_5.addWidget(self.DebugText)

@@ -13,7 +13,6 @@ def thread_loop():
 
     #THE MAIN THREAD
     while True:
-        
         #add all company tickers to company dictionary from DB
         sqlThreadFunctions.refreshDBCompanyDictionary(sqlThreadFunctions)
 
@@ -24,12 +23,13 @@ def thread_loop():
 
         #update db from json lists
         sqlThreadFunctions.refreshJsonData(sqlThreadFunctions)
+        sqlThreadFunctions.FilterRetrievedData(sqlThreadFunctions)
         sqlThreadFunctions.add_to_database(sqlThreadFunctions)
         sqlThreadFunctions.remove_from_database(sqlThreadFunctions)
 
         #reset json
         sqlThreadFunctions.clearJson(sqlThreadFunctions, "companyList.json")
-        sleep(0.5)
+        sleep(0.01)
         
     
 if __name__ == '__main__':

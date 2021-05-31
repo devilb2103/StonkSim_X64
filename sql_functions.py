@@ -9,8 +9,8 @@ sqlCur = None
 table = None
 
 createTableCommand = '''create table IF NOT EXISTS companyData
-                (S_Ticker varchar(15) primary key,
-                S_Company varchar(40),
+                (S_Ticker varchar(15),
+                S_Company varchar(60) primary key,
                 S_CurrentPrice varchar(10),
                 S_Change varchar(10),
                 S_ChangeP varchar(10),
@@ -58,9 +58,12 @@ class sqlFunctions():
     
     def getTableData(self):
         from ui_functions import UIFunctions
+        con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
+        sqlCur = con.cursor()
         cmd = "select * from companydata;"
         sqlCur.execute(cmd)
         table = sqlCur.fetchall()
+        print(table)
         UIFunctions.refreshUItable(self, table)
 
     ## INITIALIZES THE SQL DATABASE FOR READ-WRITE--ABILITY

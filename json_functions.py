@@ -1,6 +1,4 @@
 import json
-import requests
-import yfinance as yf
 import os
 
 class JSONFuntions():
@@ -48,11 +46,3 @@ class JSONFuntions():
     
     def initJSON(self):
         self.createJSON()
-
-    def returnTickerSymbol(self, CompanyName):
-        url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + CompanyName + "&lang=en"
-        r = requests.get(url)
-        return r.json()["ResultSet"]["Result"][0]["symbol"]
-
-    def returnCompanyName(self, ticker):
-        return(yf.Ticker(ticker).info["longName"])
