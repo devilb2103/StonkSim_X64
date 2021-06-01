@@ -37,7 +37,10 @@ class JSONFuntions():
         with open(filename) as f: 
             lines = f.readlines() #read 
         #modify 
-        lines[0] = "{\n" #you can replace zero with any line number. 
+        try:
+            lines[0] = "{\n" #you can replace zero with any line number. 
+        except IndexError:
+            print(len(lines))
         with open(filename, "w") as f: 
             f.writelines(lines) #write back 
 

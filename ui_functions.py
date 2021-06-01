@@ -181,7 +181,7 @@ class UIFunctions(MainWindow):
                     else:
                         ## set text to red
                         self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 100, 0)))
-        QtCore.QTimer.singleShot(4000, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self)))
+        QtCore.QTimer.singleShot(1000, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self)))
 
     def getSelectedRows(self):
         rows = []
@@ -190,6 +190,6 @@ class UIFunctions(MainWindow):
         return(rows)
 
     def closeProgram(self):
-        terminateThread = True
         JSONFuntions.deleteJson(self)
+        terminateThread = True
         self.close()

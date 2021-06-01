@@ -4,6 +4,7 @@ from time import sleep
 import yfinance as yf
 import mysql.connector as sql
 import mysql.connector.errors as Error
+from main_thread import *
 
 additems_list = []
 additems_list_filtered = []
@@ -37,18 +38,17 @@ class sqlThreadFunctions():
         global remitems_list
 
         try:
-            f = open('companyList.json')
-            data = json.load(f)
-            ##add list
-            add_dict = data['add']
-            additems_list = list(add_dict.items())
-            
-            ##remove list
-            rem_dict = data['remove']
-            remitems_list=list(rem_dict.items())
-            #close    
-            f.close()
-        
+            with open('companyList.json') as f:
+                data = json.load(f)
+                ##add list
+                add_dict = data['add']
+                additems_list = list(add_dict.items())
+                
+                ##remove list
+                rem_dict = data['remove']
+                remitems_list=list(rem_dict.items())
+                #close    
+                f.close()
         except FileNotFoundError:
             print("no json file!")
     
@@ -85,7 +85,6 @@ class sqlThreadFunctions():
     def add_to_database(self):
         for i in additems_list_filtered:
             companyName = (str(i[0]))
-            #companyName = (str(i[0]).split()[0]).replace(",", "")
             ticker = i[1]
             cmd = "INSERT INTO companydata (S_Ticker, S_Company) VALUES(%s,%s)"
             try:
@@ -97,11 +96,11 @@ class sqlThreadFunctions():
 
     def remove_from_database(self):
         for i in remitems_list:
-            company=i[0]
-            cmd="DELETE FROM companyData WHERE S_Company = '{}'".format(company);
+            company = i[0]
+            cmd = "DELETE FROM companyData WHERE S_Company = '{}';".format(company)
             sqlCur.execute(cmd)
             con.commit()
-            
+
     def clearJson(self, file):
         try:
             file = open(file, "r+")
@@ -117,6 +116,7 @@ class sqlThreadFunctions():
 
     def refreshDBCompanyDictionary(self):
         global databaseCompanyList
+        databaseCompanyList.clear()
         cmd = "select * from companydata;"
         sqlCur.execute(cmd)
         data = sqlCur.fetchall()
