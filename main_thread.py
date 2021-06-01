@@ -18,8 +18,11 @@ def thread_loop():
 
         #iterate all the values in the dict and update db
         for i in databaseCompanyList.keys():
-            result = stockFunctions.returnCompanyDetails(stockFunctions, i)
-            sqlThreadFunctions.updateRecord(sqlThreadFunctions, i, result[0], result[1], result[2], result[3], result[4])
+            try:
+                result = stockFunctions.returnCompanyDetails(stockFunctions, i)
+                sqlThreadFunctions.updateRecord(sqlThreadFunctions, i, result[0], result[1], result[2], result[3], result[4])
+            except Exception as e:
+                print(e)
 
         #update db from json lists
         sqlThreadFunctions.refreshJsonData(sqlThreadFunctions)

@@ -57,20 +57,23 @@ class sqlThreadFunctions():
             if((len(i) > 1) and ("lol123" in str(i[0]))):
                 print("searched by ticker")
                 newData = []
-                newData.append(sqlThreadFunctions.returnCompanyName(self, i[1]))
+                companyName = sqlThreadFunctions.returnCompanyName(self, i[1])
+                if(companyName == "skip123"):
+                    continue
+                newData.append(companyName)
                 newData.append(sqlThreadFunctions.returnTickerSymbol(self, str(newData[0]).split()[0].replace(",", "")))
                 additems_list_filtered.append(newData)
-                print(additems_list_filtered)
             elif((len(i) > 1) and ("lol123" in str(i[1]))):
                 print("searched by name")
                 newData = []
                 newData.append(i[0])
                 ticker = sqlThreadFunctions.returnTickerSymbol(self, newData[0])
+                if (ticker == "skip123"):
+                    continue
                 newData.append(sqlThreadFunctions.returnCompanyName(self, ticker))
                 newData.append(ticker)
                 newData.pop(0)
                 additems_list_filtered.append(newData)
-                print(additems_list_filtered)
         additems_list.clear()
 
 
@@ -94,8 +97,8 @@ class sqlThreadFunctions():
 
     def remove_from_database(self):
         for i in remitems_list:
-            ticker=i[1]
-            cmd="DELETE FROM companyData WHERE S_Ticker = '{}'".format(ticker);
+            company=i[0]
+            cmd="DELETE FROM companyData WHERE S_Company = '{}'".format(company);
             sqlCur.execute(cmd)
             con.commit()
             
@@ -123,19 +126,15 @@ class sqlThreadFunctions():
     def returnTickerSymbol(self, CompanyName):
         url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + CompanyName + "&lang=en"
         r = requests.get(url)
-        return r.json()["ResultSet"]["Result"][0]["symbol"]
-        # try:
-        #     return r.json()["ResultSet"]["Result"][0]["symbol"]
-        # except Exception:
-        #     print("failed to return ticker symbol for company name input: ", CompanyName)
+        try:
+            return r.json()["ResultSet"]["Result"][0]["symbol"]
+        except IndexError:
+            print(f"No company called {CompanyName} exists")
+            return ("skip123")
 
     def returnCompanyName(self, ticker):
-        return(yf.Ticker(ticker).info["longName"])
-
-if __name__ == '__main__':
-    from stock_functions import *
-    sqlThreadFunctions.createDBcon(sqlThreadFunctions)
-    result = stockFunctions.returnCompanyDetails(stockFunctions, "GOOG")
-    print(type(result[0]), result[1], result[2], result[3], result[4])
-    sqlThreadFunctions.updateRecord(sqlThreadFunctions, result[0], result[1], result[2], result[3], result[4], "GOOG")
-    
+        try:
+            return(yf.Ticker(ticker).info["longName"])
+        except KeyError:
+            print(f"Company {ticker} not found!")
+            return ("skip123")

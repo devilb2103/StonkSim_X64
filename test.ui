@@ -948,9 +948,11 @@ QCheckBox
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QTableView{
-background-color: rgb(35, 35, 35);
-border: 0px;
-border-radius: 9px;
+	background-color: rgb(35, 35, 35);
+	border: 0px;
+	border-radius: 9px;
+	selection-background-color: rgb(45,45, 45);
+	selection-color: rgb(255, 255, 255);
 }
 QHeaderView::section{
 	color: #FFFFFF;
@@ -972,10 +974,16 @@ QTableView::item {
                  <set>QAbstractItemView::NoEditTriggers</set>
                 </property>
                 <property name="selectionMode">
-                 <enum>QAbstractItemView::NoSelection</enum>
+                 <enum>QAbstractItemView::SingleSelection</enum>
+                </property>
+                <property name="selectionBehavior">
+                 <enum>QAbstractItemView::SelectRows</enum>
                 </property>
                 <property name="showGrid">
                  <bool>true</bool>
+                </property>
+                <property name="gridStyle">
+                 <enum>Qt::SolidLine</enum>
                 </property>
                 <attribute name="verticalHeaderStretchLastSection">
                  <bool>false</bool>

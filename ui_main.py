@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testduuPZg.ui'
+## Form generated from reading UI file 'testPVshmY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -474,9 +474,11 @@ class Ui_MainWindow(object):
         self.tableWidget.setFont(font3)
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
         self.tableWidget.setStyleSheet(u"QTableView{\n"
-"background-color: rgb(35, 35, 35);\n"
-"border: 0px;\n"
-"border-radius: 9px;\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border: 0px;\n"
+"	border-radius: 9px;\n"
+"	selection-background-color: rgb(45,45, 45);\n"
+"	selection-color: rgb(255, 255, 255);\n"
 "}\n"
 "QHeaderView::section{\n"
 "	color: #FFFFFF;\n"
@@ -490,8 +492,10 @@ class Ui_MainWindow(object):
         self.tableWidget.setFrameShape(QFrame.NoFrame)
         self.tableWidget.setAutoScroll(False)
         self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.tableWidget.setSelectionMode(QAbstractItemView.NoSelection)
+        self.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tableWidget.setShowGrid(True)
+        self.tableWidget.setGridStyle(Qt.SolidLine)
         self.tableWidget.verticalHeader().setStretchLastSection(False)
 
         self.verticalLayout_8.addWidget(self.tableWidget)

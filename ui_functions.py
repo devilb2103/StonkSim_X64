@@ -169,20 +169,27 @@ class UIFunctions(MainWindow):
     def refreshUItable(self, table):
         self.ui.tableWidget.setRowCount(len(list(table)))
         for row in range(self.ui.tableWidget.rowCount()):
+            self.ui.tableWidget.resizeRowToContents(row)
             for column in range(self.ui.tableWidget.columnCount()):
                 self.ui.tableWidget.setItem(row, column, QTableWidgetItem(table[row][column + 1]))
                 self.ui.tableWidget.item(row, column).setTextAlignment(Qt.AlignHCenter)
                 currentItem = self.ui.tableWidget.item(row, column).text()
-                if(column == 2 or column == 3):
+                if((column == 2 or column == 3) and (currentItem != "")):
                     if("-" in currentItem):
-                        #self.ui.tableWidget.item(row, column).setData(Qt.ForegroundRole.TextColorRole, QBrush(QColor(255, 0, 0)))
-                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(255, 0, 0)))
+                        ## set text to red
+                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(100, 0, 0)))
                     else:
-                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 255, 0)))
-        print("lol")
+                        ## set text to red
+                        self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 100, 0)))
         QtCore.QTimer.singleShot(4000, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self)))
 
+    def getSelectedRows(self):
+        rows = []
+        for idx in self.ui.tableWidget.selectedIndexes():
+            rows.append(idx.row())
+        return(rows)
+
     def closeProgram(self):
-        JSONFuntions.deleteJson(self)
         terminateThread = True
+        JSONFuntions.deleteJson(self)
         self.close()

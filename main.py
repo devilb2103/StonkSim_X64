@@ -84,6 +84,20 @@ class MainWindow(QMainWindow):
 
     def mousePressEvent(self, event):
         self.dragpos = event.globalPos()
+    
+    def keyPressEvent(self, event):
+        ## Delete key
+        if(event.key() == 16777223):
+            try:
+                row = UIFunctions.getSelectedRows(self)[0]
+                JSONFuntions.writeToCompanyList(self, self.ui.tableWidget.item(row, 0).text(), "ticker", False)
+                #self.ui.tableWidget.removeRow(UIFunctions.getSelectedRows(self)[0])
+            except IndexError:
+                print("No record selected")
+
+        ## Escape Key
+        if(event.key() == 16777216):
+            self.ui.tableWidget.clearSelection()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
