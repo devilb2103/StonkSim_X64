@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testPVshmY.ui'
+## Form generated from reading UI file 'testVmprkz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1140, 750)
+        MainWindow.resize(1000, 600)
         MainWindow.setMinimumSize(QSize(1000, 600))
         MainWindow.setStyleSheet(u"background-color: rgb(45, 45, 45);")
         self.centralwidget = QWidget(MainWindow)
@@ -506,17 +506,121 @@ class Ui_MainWindow(object):
         self.verticalLayout_9 = QVBoxLayout(self.graphs_page)
         self.verticalLayout_9.setSpacing(0)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.label_5 = QLabel(self.graphs_page)
-        self.label_5.setObjectName(u"label_5")
-        font4 = QFont()
-        font4.setFamily(u"Roboto Thin")
-        font4.setPointSize(24)
-        self.label_5.setFont(font4)
-        self.label_5.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.label_5.setAlignment(Qt.AlignCenter)
+        self.verticalLayout_9.setContentsMargins(60, 30, 60, 30)
+        self.Graphs_page_Topbar = QFrame(self.graphs_page)
+        self.Graphs_page_Topbar.setObjectName(u"Graphs_page_Topbar")
+        self.Graphs_page_Topbar.setFrameShape(QFrame.NoFrame)
+        self.Graphs_page_Topbar.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_10 = QHBoxLayout(self.Graphs_page_Topbar)
+        self.horizontalLayout_10.setSpacing(15)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.Company_DropDown_parent = QFrame(self.Graphs_page_Topbar)
+        self.Company_DropDown_parent.setObjectName(u"Company_DropDown_parent")
+        self.Company_DropDown_parent.setMinimumSize(QSize(350, 50))
+        self.Company_DropDown_parent.setMaximumSize(QSize(390, 50))
+        self.Company_DropDown_parent.setFrameShape(QFrame.NoFrame)
+        self.Company_DropDown_parent.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.Company_DropDown_parent)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.Company_combobox = QComboBox(self.Company_DropDown_parent)
+        self.Company_combobox.setObjectName(u"Company_combobox")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.Company_combobox.sizePolicy().hasHeightForWidth())
+        self.Company_combobox.setSizePolicy(sizePolicy1)
+        self.Company_combobox.setMinimumSize(QSize(320, 45))
+        self.Company_combobox.setMaximumSize(QSize(380, 45))
+        self.Company_combobox.setFont(font)
+        self.Company_combobox.setStyleSheet(u"QComboBox{\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"QComboBox::drop-down{\n"
+"	border-width: 0px;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	image: none; \n"
+"	border-width: 0px;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"    border: 0px solid ;\n"
+"    color: white;\n"
+"    selection-background-color: rgb(35, 35, 35);\n"
+"	outline: none;\n"
+"	border-radius: 9px;\n"
+"}")
+        self.Company_combobox.setFrame(True)
 
-        self.verticalLayout_9.addWidget(self.label_5)
+        self.horizontalLayout_11.addWidget(self.Company_combobox)
+
+
+        self.horizontalLayout_10.addWidget(self.Company_DropDown_parent)
+
+        self.timeFrame_dropdown_parent = QFrame(self.Graphs_page_Topbar)
+        self.timeFrame_dropdown_parent.setObjectName(u"timeFrame_dropdown_parent")
+        self.timeFrame_dropdown_parent.setMinimumSize(QSize(285, 50))
+        self.timeFrame_dropdown_parent.setMaximumSize(QSize(285, 50))
+        self.timeFrame_dropdown_parent.setFrameShape(QFrame.NoFrame)
+        self.timeFrame_dropdown_parent.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.timeFrame_dropdown_parent)
+        self.horizontalLayout_12.setSpacing(0)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.timeframe_combobox = QComboBox(self.timeFrame_dropdown_parent)
+        self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.setObjectName(u"timeframe_combobox")
+        sizePolicy1.setHeightForWidth(self.timeframe_combobox.sizePolicy().hasHeightForWidth())
+        self.timeframe_combobox.setSizePolicy(sizePolicy1)
+        self.timeframe_combobox.setMinimumSize(QSize(270, 45))
+        self.timeframe_combobox.setMaximumSize(QSize(270, 45))
+        self.timeframe_combobox.setFont(font)
+        self.timeframe_combobox.setStyleSheet(u"QComboBox{\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"QComboBox::drop-down{\n"
+"	border-width: 0px;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	image: none; \n"
+"	border-width: 0px;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"    border: 0px solid ;\n"
+"    color: white;\n"
+"    selection-background-color: rgb(35, 35, 35);\n"
+"	outline: none;\n"
+"	border-radius: 9px;\n"
+"}")
+
+        self.horizontalLayout_12.addWidget(self.timeframe_combobox)
+
+
+        self.horizontalLayout_10.addWidget(self.timeFrame_dropdown_parent, 0, Qt.AlignLeft)
+
+
+        self.verticalLayout_9.addWidget(self.Graphs_page_Topbar, 0, Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_9.addItem(self.horizontalSpacer_2)
+
+        self.graph_widget = QWidget(self.graphs_page)
+        self.graph_widget.setObjectName(u"graph_widget")
+        sizePolicy.setHeightForWidth(self.graph_widget.sizePolicy().hasHeightForWidth())
+        self.graph_widget.setSizePolicy(sizePolicy)
+        self.graph_widget.setStyleSheet(u"background-color: rgb(35, 35, 35);\n"
+"border: 0px;\n"
+"border-radius: 9px;")
+
+        self.verticalLayout_9.addWidget(self.graph_widget)
 
         self.stackedWidget.addWidget(self.graphs_page)
         self.accounts_page = QWidget()
@@ -527,6 +631,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.label_6 = QLabel(self.accounts_page)
         self.label_6.setObjectName(u"label_6")
+        font4 = QFont()
+        font4.setFamily(u"Roboto Thin")
+        font4.setPointSize(24)
         self.label_6.setFont(font4)
         self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignCenter)
@@ -591,7 +698,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -624,7 +731,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Open", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Previous Close", None));
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Graphs", None))
+        self.timeframe_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Today", None))
+        self.timeframe_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"All Time", None))
+
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.DebugText.setText("")
     # retranslateUi

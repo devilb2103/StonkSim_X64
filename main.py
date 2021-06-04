@@ -4,6 +4,7 @@ import subprocess
 import mysql.connector as sql
 import mysql.connector.errors as Error
 import platform
+
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent, QThread)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
@@ -77,7 +78,6 @@ class MainWindow(QMainWindow):
         self.show()
 
         ## ==> END ##
-            
 
     ##APP EVENTS
     #######################################################################
