@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testVmprkz.ui'
+## Form generated from reading UI file 'testlDHgDH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -14,6 +14,8 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+
+from pyqtgraph import PlotWidget
 
 
 class Ui_MainWindow(object):
@@ -574,6 +576,7 @@ class Ui_MainWindow(object):
         self.timeframe_combobox = QComboBox(self.timeFrame_dropdown_parent)
         self.timeframe_combobox.addItem("")
         self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.addItem("")
         self.timeframe_combobox.setObjectName(u"timeframe_combobox")
         sizePolicy1.setHeightForWidth(self.timeframe_combobox.sizePolicy().hasHeightForWidth())
         self.timeframe_combobox.setSizePolicy(sizePolicy1)
@@ -612,15 +615,32 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addItem(self.horizontalSpacer_2)
 
-        self.graph_widget = QWidget(self.graphs_page)
+        self.graph_container = QFrame(self.graphs_page)
+        self.graph_container.setObjectName(u"graph_container")
+        sizePolicy.setHeightForWidth(self.graph_container.sizePolicy().hasHeightForWidth())
+        self.graph_container.setSizePolicy(sizePolicy)
+        self.graph_container.setStyleSheet(u"background-color: rgb(35, 35, 35);\n"
+"border: 0px;\n"
+"border-radius: 9px;")
+        self.graph_container.setFrameShape(QFrame.NoFrame)
+        self.graph_container.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_13 = QHBoxLayout(self.graph_container)
+        self.horizontalLayout_13.setSpacing(0)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.graph_widget = PlotWidget(self.graph_container)
         self.graph_widget.setObjectName(u"graph_widget")
+        self.graph_widget.setEnabled(True)
         sizePolicy.setHeightForWidth(self.graph_widget.sizePolicy().hasHeightForWidth())
         self.graph_widget.setSizePolicy(sizePolicy)
         self.graph_widget.setStyleSheet(u"background-color: rgb(35, 35, 35);\n"
 "border: 0px;\n"
 "border-radius: 9px;")
 
-        self.verticalLayout_9.addWidget(self.graph_widget)
+        self.horizontalLayout_13.addWidget(self.graph_widget)
+
+
+        self.verticalLayout_9.addWidget(self.graph_container)
 
         self.stackedWidget.addWidget(self.graphs_page)
         self.accounts_page = QWidget()
@@ -731,8 +751,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Open", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Previous Close", None));
-        self.timeframe_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Today", None))
-        self.timeframe_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"All Time", None))
+        self.timeframe_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Last 24hrs", None))
+        self.timeframe_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"This Week", None))
+        self.timeframe_combobox.setItemText(2, QCoreApplication.translate("MainWindow", u"All Time", None))
 
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.DebugText.setText("")

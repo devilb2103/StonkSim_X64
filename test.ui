@@ -1257,7 +1257,12 @@ QComboBox QAbstractItemView{
                       </property>
                       <item>
                        <property name="text">
-                        <string>Today</string>
+                        <string>Last 24hrs</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>This Week</string>
                        </property>
                       </item>
                       <item>
@@ -1290,7 +1295,7 @@ QComboBox QAbstractItemView{
                </spacer>
               </item>
               <item>
-               <widget class="QWidget" name="graph_widget" native="true">
+               <widget class="QFrame" name="graph_container">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -1302,6 +1307,47 @@ QComboBox QAbstractItemView{
 border: 0px;
 border-radius: 9px;</string>
                 </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="PlotWidget" name="graph_widget" native="true">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(35, 35, 35);
+border: 0px;
+border-radius: 9px;</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -1456,6 +1502,14 @@ border-radius: 9px;</string>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

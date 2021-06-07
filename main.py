@@ -1,6 +1,6 @@
 import sys
-from time import sleep
 import subprocess
+import threading
 import mysql.connector as sql
 import mysql.connector.errors as Error
 import platform
@@ -17,8 +17,9 @@ from ui_main import Ui_MainWindow
 from ui_functions import *
 from json_functions import *
 from sql_functions import *
+from graph_functions import *
 
-terminateThread = False
+terminatedDBThread = False
 canRefresh = False
 
 class MainWindow(QMainWindow):
@@ -46,11 +47,20 @@ class MainWindow(QMainWindow):
 
         ## INITIALIZE THE JSON
         JSONFuntions.createJSON(self)
-        threadProcess = subprocess.Popen(["python", "main_thread.py"])
-        if(terminateThread):
-            threadProcess.terminate()
+
+        ##INITIALIZE THE DATABASE THREADPROCESS
+        DBthreadProcess = subprocess.Popen(["python", "main_thread.py"])
+        if(terminatedDBThread):
+            DBthreadProcess.terminate()
         
+        #START THE TABLE REFRESH PROCESS
         UIFunctions.refreshUItable(self, sqlFunctions.getTableData(UIFunctions))
+
+        ## INIT GRAPH WIDGET
+        GraphFunctions.initGraph(self)
+        UIFunctions.refreshGraphDropdown(self)
+        graphDataFetcherThread = threading.Thread(target=GraphFunctions.graphTimer, args=(self,))
+        graphDataFetcherThread.start()
 
         ## TOGGLE/BURGER MENU
         ########################################################################
@@ -62,13 +72,14 @@ class MainWindow(QMainWindow):
         
         # Page Init
         # PAGE 1
-        
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
         self.ui.addToTable_pushButton.clicked.connect(lambda: UIFunctions.onAddCompanyButtonClick(self))
         self.ui.InputType_checkBox.stateChanged.connect(lambda: UIFunctions.setSearchStateCheckboxText(self))
         
         # PAGE 2
         self.ui.Page_btn_2.clicked.connect(lambda: UIFunctions.setPage2(self))
+        self.ui.Company_combobox.activated.connect(lambda: UIFunctions.plotGraph(self))
+        self.ui.timeframe_combobox.activated.connect(lambda: UIFunctions.plotGraph(self))
         
         # PAGE 3
         self.ui.Page_btn_3.clicked.connect(lambda: UIFunctions.setPage3(self))
@@ -91,7 +102,6 @@ class MainWindow(QMainWindow):
             try:
                 row = UIFunctions.getSelectedRows(self)[0]
                 JSONFuntions.writeToCompanyList(self, self.ui.tableWidget.item(row, 0).text(), "ticker", False)
-                #self.ui.tableWidget.removeRow(UIFunctions.getSelectedRows(self)[0])
             except IndexError:
                 print("No record selected")
 

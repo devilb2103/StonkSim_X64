@@ -1,8 +1,11 @@
 import requests
 from PySide2 import QtCore
 import random
+import multiprocessing
+
 from main import *
 from json_functions import *
+from graph_functions import *
 
 GLOBAL_STATE = 0
 SEARCH_STATE = 0
@@ -188,8 +191,39 @@ class UIFunctions(MainWindow):
         for idx in self.ui.tableWidget.selectedIndexes():
             rows.append(idx.row())
         return(rows)
+    
+    ##########################################################################################
+    ##Graph Functions
+
+    def refreshGraphDropdown(self):
+        GraphFunctions.initDB(GraphFunctions)
+        companyDict = GraphFunctions.getCompanyList(GraphFunctions)
+        companyList = dict(companyDict).keys()
+        comboboxList = [self.ui.Company_combobox.itemText(i) for i in range(self.ui.Company_combobox.count())]
+
+        ##Checks the combobox list for items from the retrieved sql database company list 
+        ##and adds attems accordingly
+        for i in companyList:
+            if(not(i in comboboxList)):
+                self.ui.Company_combobox.addItem(i)
+        
+        ##Checks the retrieved items list for any missing vales from combobox and removes 
+        ##the ones missing in the sql database companylist from the combobox
+        loopItem = 0
+        for i in comboboxList:
+            if(not(i in companyList)):
+                self.ui.Company_combobox.removeItem(loopItem)
+            loopItem += 1
+        GraphFunctions.dataLine.setData(GraphFunctions.xData, GraphFunctions.yData)
+        QtCore.QTimer.singleShot(1000, lambda: UIFunctions.refreshGraphDropdown(self))
+    
+    def plotGraph(self):
+        companyDict = GraphFunctions.getCompanyList(GraphFunctions)
+        GraphFunctions.toSearchCursor = companyDict[self.ui.Company_combobox.currentText()]
+        GraphFunctions.searchType = self.ui.timeframe_combobox.currentIndex()
 
     def closeProgram(self):
         JSONFuntions.deleteJson(self)
-        terminateThread = True
+        terminatedDBThread = True
+        GraphFunctions.killDataFetcherThread = True
         self.close()
