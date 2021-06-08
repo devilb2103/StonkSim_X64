@@ -73,6 +73,9 @@ class UIFunctions(MainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+        ## Start Page settings
+        self.ui.github_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
+
         ## TITLEBAR BUTTONS
         self.ui.closeBtn.setToolTip("Close")
         self.ui.closeBtn.clicked.connect(lambda: UIFunctions.closeProgram(self))
@@ -99,6 +102,11 @@ class UIFunctions(MainWindow):
         ## HIDE VERTICAL HEADER AND ALSO ADD NUMBER OF ROWS (FOR REFERENCE)
         #self.ui.tableWidget.setRowCount(3)
         self.ui.tableWidget.verticalHeader().hide()
+    
+    def copyGitLinkToClipboard(self):
+        clipBoard = QtGui.QGuiApplication.clipboard()
+        clipBoard.clear(mode=clipBoard.Clipboard)
+        clipBoard.setText("https://github.com/devilb2103/StonkSim_X64", mode=clipBoard.Clipboard)
 
     def maximize_restore(self):
         global GLOBAL_STATE

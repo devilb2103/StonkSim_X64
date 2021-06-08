@@ -59,9 +59,11 @@ class sqlThreadFunctions():
                 newData = []
                 companyName = sqlThreadFunctions.returnCompanyName(self, i[1])
                 if(companyName == "skip123"):
+                    print(i[1])
                     continue
                 newData.append(companyName)
-                newData.append(sqlThreadFunctions.returnTickerSymbol(self, str(newData[0]).split()[0].replace(",", "")))
+                newData.append(str(i[1]).upper())
+                #newData.append(sqlThreadFunctions.returnTickerSymbol(self, str(newData[0]).split()[0].replace(",", "")))
                 additems_list_filtered.append(newData)
             elif((len(i) > 1) and ("lol123" in str(i[1]))):
                 print("searched by name")
@@ -100,6 +102,11 @@ class sqlThreadFunctions():
             cmd = "DELETE FROM companyData WHERE S_Company = '{}';".format(company)
             sqlCur.execute(cmd)
             con.commit()
+    
+    def removeNoneCompanies(self):
+        cmd = "DELETE FROM companyData WHERE S_Company = '{}';".format(None)
+        sqlCur.execute(cmd)
+        con.commit()
 
     def clearJson(self, file):
         try:

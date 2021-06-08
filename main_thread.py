@@ -1,3 +1,4 @@
+
 import multiprocessing
 import mysql.connector as sql
 from sql_thread_functions import *
@@ -63,6 +64,7 @@ class mainThread():
             sqlThreadFunctions.FilterRetrievedData(sqlThreadFunctions)
             sqlThreadFunctions.add_to_database(sqlThreadFunctions)
             sqlThreadFunctions.remove_from_database(sqlThreadFunctions)
+            sqlThreadFunctions.removeNoneCompanies(sqlThreadFunctions)
                 ## refresh json data after heavy tasks AND BEFORE clear json data so program does not miss out inputs
             sqlThreadFunctions.refreshJsonData(sqlThreadFunctions)
             #reset json

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testlDHgDH.ui'
+## Form generated from reading UI file 'testxhWPfU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -22,8 +22,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1000, 600)
-        MainWindow.setMinimumSize(QSize(1000, 600))
+        MainWindow.resize(1000, 660)
+        MainWindow.setMinimumSize(QSize(1000, 660))
         MainWindow.setStyleSheet(u"background-color: rgb(45, 45, 45);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -315,6 +315,87 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.stackedWidget = QStackedWidget(self.content_area)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setStyleSheet(u"")
+        self.start_page = QWidget()
+        self.start_page.setObjectName(u"start_page")
+        self.start_page.setStyleSheet(u"background-color: rgb(35, 35, 35);")
+        self.verticalLayout_10 = QVBoxLayout(self.start_page)
+        self.verticalLayout_10.setSpacing(0)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(0, 15, 0, 21)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer_2)
+
+        self.title_label = QLabel(self.start_page)
+        self.title_label.setObjectName(u"title_label")
+        font1 = QFont()
+        font1.setFamily(u"Roboto Thin")
+        font1.setPointSize(48)
+        self.title_label.setFont(font1)
+        self.title_label.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.title_label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_10.addWidget(self.title_label)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer)
+
+        self.link_container = QFrame(self.start_page)
+        self.link_container.setObjectName(u"link_container")
+        self.link_container.setMinimumSize(QSize(0, 0))
+        self.link_container.setStyleSheet(u"border-radius: 15;\n"
+"background-color: rgb(45, 45, 45);\n"
+"padding-left: 12px;\n"
+"padding-right: 12px;\n"
+"padding-top: 6px;\n"
+"padding-bottom: 6px;")
+        self.link_container.setFrameShape(QFrame.StyledPanel)
+        self.link_container.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.link_container)
+        self.horizontalLayout_14.setSpacing(10)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.github_label = QLabel(self.link_container)
+        self.github_label.setObjectName(u"github_label")
+        font2 = QFont()
+        font2.setFamily(u"Roboto Thin")
+        font2.setPointSize(24)
+        self.github_label.setFont(font2)
+        self.github_label.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"selection-background-color: rgb(35, 35, 35);\n"
+"")
+        self.github_label.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_14.addWidget(self.github_label)
+
+        self.copyToClipBoard_button = QPushButton(self.link_container)
+        self.copyToClipBoard_button.setObjectName(u"copyToClipBoard_button")
+        self.copyToClipBoard_button.setMinimumSize(QSize(45, 45))
+        self.copyToClipBoard_button.setMaximumSize(QSize(45, 45))
+        self.copyToClipBoard_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border: 0px solid;\n"
+"	border-radius: 22px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 22px;\n"
+"}\n"
+"")
+        icon7 = QIcon()
+        icon7.addFile(u"Resources/icons8-copy-24.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.copyToClipBoard_button.setIcon(icon7)
+        self.copyToClipBoard_button.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_14.addWidget(self.copyToClipBoard_button, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.verticalLayout_10.addWidget(self.link_container, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+        self.stackedWidget.addWidget(self.start_page)
         self.table_page = QWidget()
         self.table_page.setObjectName(u"table_page")
         self.verticalLayout_8 = QVBoxLayout(self.table_page)
@@ -370,9 +451,9 @@ class Ui_MainWindow(object):
 "	border-radius: 22px;\n"
 "}\n"
 "")
-        icon7 = QIcon()
-        icon7.addFile(u"Resources/icons8-plus-24.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.addToTable_pushButton.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u"Resources/icons8-plus-24.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.addToTable_pushButton.setIcon(icon8)
         self.addToTable_pushButton.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_7.addWidget(self.addToTable_pushButton)
@@ -382,9 +463,9 @@ class Ui_MainWindow(object):
 
         self.SwitchSearchType_Parent = QFrame(self.Table_page_Topbar)
         self.SwitchSearchType_Parent.setObjectName(u"SwitchSearchType_Parent")
-        font1 = QFont()
-        font1.setFamily(u"Roboto Thin")
-        self.SwitchSearchType_Parent.setFont(font1)
+        font3 = QFont()
+        font3.setFamily(u"Roboto Thin")
+        self.SwitchSearchType_Parent.setFont(font3)
         self.SwitchSearchType_Parent.setStyleSheet(u"")
         self.SwitchSearchType_Parent.setFrameShape(QFrame.NoFrame)
         self.SwitchSearchType_Parent.setFrameShadow(QFrame.Raised)
@@ -394,10 +475,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setContentsMargins(30, 0, 0, 0)
         self.InputType_checkBox = QCheckBox(self.SwitchSearchType_Parent)
         self.InputType_checkBox.setObjectName(u"InputType_checkBox")
-        font2 = QFont()
-        font2.setFamily(u"Roboto Thin")
-        font2.setPointSize(16)
-        self.InputType_checkBox.setFont(font2)
+        font4 = QFont()
+        font4.setFamily(u"Roboto Thin")
+        font4.setPointSize(16)
+        self.InputType_checkBox.setFont(font4)
         self.InputType_checkBox.setStyleSheet(u"QCheckBox::indicator:checked\n"
 "{\n"
 "	border : 2px solid white;\n"
@@ -471,9 +552,9 @@ class Ui_MainWindow(object):
         __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.tableWidget.setObjectName(u"tableWidget")
-        font3 = QFont()
-        font3.setPointSize(11)
-        self.tableWidget.setFont(font3)
+        font5 = QFont()
+        font5.setPointSize(11)
+        self.tableWidget.setFont(font5)
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
         self.tableWidget.setStyleSheet(u"QTableView{\n"
 "	background-color: rgb(35, 35, 35);\n"
@@ -577,6 +658,9 @@ class Ui_MainWindow(object):
         self.timeframe_combobox.addItem("")
         self.timeframe_combobox.addItem("")
         self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.addItem("")
+        self.timeframe_combobox.addItem("")
         self.timeframe_combobox.setObjectName(u"timeframe_combobox")
         sizePolicy1.setHeightForWidth(self.timeframe_combobox.sizePolicy().hasHeightForWidth())
         self.timeframe_combobox.setSizePolicy(sizePolicy1)
@@ -651,10 +735,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.label_6 = QLabel(self.accounts_page)
         self.label_6.setObjectName(u"label_6")
-        font4 = QFont()
-        font4.setFamily(u"Roboto Thin")
-        font4.setPointSize(24)
-        self.label_6.setFont(font4)
+        self.label_6.setFont(font2)
         self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignCenter)
 
@@ -677,10 +758,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(15, 0, 0, 0)
         self.DebugText = QLabel(self.bottom_frame)
         self.DebugText.setObjectName(u"DebugText")
-        font5 = QFont()
-        font5.setFamily(u"Roboto Light")
-        font5.setPointSize(10)
-        self.DebugText.setFont(font5)
+        font6 = QFont()
+        font6.setFamily(u"Roboto Light")
+        font6.setPointSize(10)
+        self.DebugText.setFont(font6)
         self.DebugText.setStyleSheet(u"")
 
         self.horizontalLayout_5.addWidget(self.DebugText)
@@ -718,7 +799,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -736,6 +817,9 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Stocks", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Graph", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Account", None))
+        self.title_label.setText(QCoreApplication.translate("MainWindow", u"StonkSim_X64", None))
+        self.github_label.setText(QCoreApplication.translate("MainWindow", u"https://github.com/devilb2103/StonkSim_X64", None))
+        self.copyToClipBoard_button.setText("")
         self.companyInput_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Company Name", None))
         self.addToTable_pushButton.setText("")
         self.InputType_checkBox.setText(QCoreApplication.translate("MainWindow", u"Search by: Ticker", None))
@@ -751,9 +835,12 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Open", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Previous Close", None));
-        self.timeframe_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Last 24hrs", None))
-        self.timeframe_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"This Week", None))
-        self.timeframe_combobox.setItemText(2, QCoreApplication.translate("MainWindow", u"All Time", None))
+        self.timeframe_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"This Week", None))
+        self.timeframe_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"This Month", None))
+        self.timeframe_combobox.setItemText(2, QCoreApplication.translate("MainWindow", u"Last 6 Months", None))
+        self.timeframe_combobox.setItemText(3, QCoreApplication.translate("MainWindow", u"This Year", None))
+        self.timeframe_combobox.setItemText(4, QCoreApplication.translate("MainWindow", u"Last 5 Years", None))
+        self.timeframe_combobox.setItemText(5, QCoreApplication.translate("MainWindow", u"All Time", None))
 
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.DebugText.setText("")

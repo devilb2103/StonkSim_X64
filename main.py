@@ -59,8 +59,9 @@ class MainWindow(QMainWindow):
         ## INIT GRAPH WIDGET
         GraphFunctions.initGraph(self)
         UIFunctions.refreshGraphDropdown(self)
-        graphDataFetcherThread = threading.Thread(target=GraphFunctions.graphTimer, args=(self,))
+        graphDataFetcherThread = threading.Thread(target=GraphFunctions.graphThread, args=(self,))
         graphDataFetcherThread.start()
+        UIFunctions.plotGraph(self)
 
         ## TOGGLE/BURGER MENU
         ########################################################################
@@ -68,9 +69,11 @@ class MainWindow(QMainWindow):
 
         ## PAGES
         ########################################################################
-        UIFunctions.setPage1(self);
         
         # Page Init
+        # START PAGE
+        self.ui.copyToClipBoard_button.clicked.connect(lambda: UIFunctions.copyGitLinkToClipboard(self))
+
         # PAGE 1
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
         self.ui.addToTable_pushButton.clicked.connect(lambda: UIFunctions.onAddCompanyButtonClick(self))
