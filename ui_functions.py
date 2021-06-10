@@ -226,9 +226,12 @@ class UIFunctions(MainWindow):
         QtCore.QTimer.singleShot(1000, lambda: UIFunctions.refreshGraphDropdown(self))
     
     def plotGraph(self):
-        companyDict = GraphFunctions.getCompanyList(GraphFunctions)
-        GraphFunctions.toSearchCursor = companyDict[self.ui.Company_combobox.currentText()]
-        GraphFunctions.searchType = self.ui.timeframe_combobox.currentIndex()
+        try:
+            companyDict = GraphFunctions.getCompanyList(GraphFunctions)
+            GraphFunctions.toSearchCursor = companyDict[self.ui.Company_combobox.currentText()]
+            GraphFunctions.searchType = self.ui.timeframe_combobox.currentIndex()
+        except KeyError:
+            pass
 
     def closeProgram(self):
         JSONFuntions.deleteJson(self)
