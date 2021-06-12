@@ -1,6 +1,4 @@
 import sys
-import subprocess
-import threading
 import mysql.connector as sql
 import mysql.connector.errors as Error
 import platform
@@ -19,7 +17,6 @@ from json_functions import *
 from sql_functions import *
 from graph_functions import *
 
-terminatedDBThread = False
 canRefresh = False
 
 class MainWindow(QMainWindow):
@@ -45,24 +42,6 @@ class MainWindow(QMainWindow):
         ## MYSQL CONNECTION
         sqlFunctions.initSQL(self)
 
-        ## INITIALIZE THE JSON
-        JSONFuntions.createJSON(self)
-
-        ##INITIALIZE THE DATABASE THREADPROCESS
-        DBthreadProcess = subprocess.Popen(["python", "main_thread.py"])
-        if(terminatedDBThread):
-            DBthreadProcess.terminate()
-        
-        #START THE TABLE REFRESH PROCESS
-        UIFunctions.refreshUItable(self, sqlFunctions.getTableData(UIFunctions))
-
-        ## INIT GRAPH WIDGET
-        GraphFunctions.initGraph(self)
-        UIFunctions.refreshGraphDropdown(self)
-        graphDataFetcherThread = threading.Thread(target=GraphFunctions.graphThread, args=(self,))
-        graphDataFetcherThread.start()
-        UIFunctions.plotGraph(self)
-
         ## TOGGLE/BURGER MENU
         ########################################################################
         self.ui.expand_btn.clicked.connect(lambda: UIFunctions.toggleMenu(self, 120, True))
@@ -71,8 +50,12 @@ class MainWindow(QMainWindow):
         ########################################################################
         
         # Page Init
+        self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
+
         # START PAGE
         self.ui.copyToClipBoard_button.clicked.connect(lambda: UIFunctions.copyGitLinkToClipboard(self))
+        self.ui.signup_button.clicked.connect(lambda: UIFunctions.signUpButtonClick(self))
+        self.ui.login_button.clicked.connect(lambda: UIFunctions.loginButtonClick(self))
 
         # PAGE 1
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
@@ -111,6 +94,7 @@ class MainWindow(QMainWindow):
         ## Escape Key
         if(event.key() == 16777216):
             self.ui.tableWidget.clearSelection()
+            QApplication.focusWidget().clearFocus()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

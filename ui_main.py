@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testxhWPfU.ui'
+## Form generated from reading UI file 'testczwwCU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.expand_frame = QFrame(self.top_bar)
         self.expand_frame.setObjectName(u"expand_frame")
-        self.expand_frame.setMaximumSize(QSize(70, 16777215))
+        self.expand_frame.setMaximumSize(QSize(0, 16777215))
         self.expand_frame.setStyleSheet(u"background-color: rgb(85, 170, 255);\n"
 "border: 0px solid")
         self.expand_frame.setFrameShape(QFrame.StyledPanel)
@@ -64,10 +64,11 @@ class Ui_MainWindow(object):
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(35, 35, 35);\n"
 "	border: 0px solid;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
-"}r")
+"}")
         icon = QIcon()
         icon.addFile(u"Resources/icons8-menu-24.png", QSize(), QIcon.Normal, QIcon.Off)
         self.expand_btn.setIcon(icon)
@@ -89,7 +90,8 @@ class Ui_MainWindow(object):
         self.minimizeBtn.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(35, 35, 35);\n"
-"	border: 0px solid\n"
+"	border: 0px solid;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
@@ -107,7 +109,8 @@ class Ui_MainWindow(object):
         self.maximizeBtn.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(35, 35, 35);\n"
-"	border: 0px solid\n"
+"	border: 0px solid;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
@@ -125,7 +128,8 @@ class Ui_MainWindow(object):
         self.closeBtn.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(35, 35, 35);\n"
-"	border: 0px solid\n"
+"	border: 0px solid;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(255, 79, 79);\n"
@@ -165,6 +169,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.buttonHolder_Frame = QFrame(self.button_frame)
         self.buttonHolder_Frame.setObjectName(u"buttonHolder_Frame")
+        self.buttonHolder_Frame.setMaximumSize(QSize(0, 16777215))
         self.buttonHolder_Frame.setFrameShape(QFrame.NoFrame)
         self.buttonHolder_Frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.buttonHolder_Frame)
@@ -181,7 +186,12 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
-"}r")
+"}\n"
+"QPushButton:focus {\n"
+"	border: none;\n"
+"	outline: none;\n"
+"	padding: -1;\n"
+"}")
         icon4 = QIcon()
         icon4.addFile(u"Resources/icons8-table-24.png", QSize(), QIcon.Normal, QIcon.Off)
         self.Page_btn_1.setIcon(icon4)
@@ -200,7 +210,12 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
-"}r")
+"}\n"
+"QPushButton:focus {\n"
+"	border: none;\n"
+"	outline: none;\n"
+"	padding: -1;\n"
+"}")
         icon5 = QIcon()
         icon5.addFile(u"Resources/icons8-graph-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.Page_btn_2.setIcon(icon5)
@@ -219,7 +234,12 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover {\n"
 "	background-color: rgb(85, 170, 255);\n"
-"}r")
+"}\n"
+"QPushButton:focus {\n"
+"	border: none;\n"
+"	outline: none;\n"
+"	padding: -1;\n"
+"}")
         icon6 = QIcon()
         icon6.addFile(u"Resources/icons8-money-24.png", QSize(), QIcon.Normal, QIcon.Off)
         self.Page_btn_3.setIcon(icon6)
@@ -322,8 +342,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_10 = QVBoxLayout(self.start_page)
         self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(0, 15, 0, 21)
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalLayout_10.setContentsMargins(0, 0, 70, 21)
+        self.verticalSpacer_2 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_10.addItem(self.verticalSpacer_2)
 
@@ -336,11 +356,108 @@ class Ui_MainWindow(object):
         self.title_label.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.title_label.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_10.addWidget(self.title_label)
+        self.verticalLayout_10.addWidget(self.title_label, 0, Qt.AlignHCenter)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 75, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_10.addItem(self.verticalSpacer)
+
+        self.username_lineEdit = QLineEdit(self.start_page)
+        self.username_lineEdit.setObjectName(u"username_lineEdit")
+        self.username_lineEdit.setMinimumSize(QSize(320, 45))
+        self.username_lineEdit.setMaximumSize(QSize(360, 45))
+        self.username_lineEdit.setFont(font)
+        self.username_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.verticalLayout_10.addWidget(self.username_lineEdit, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 21, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer_4)
+
+        self.Password_lineEdit = QLineEdit(self.start_page)
+        self.Password_lineEdit.setObjectName(u"Password_lineEdit")
+        self.Password_lineEdit.setMinimumSize(QSize(320, 45))
+        self.Password_lineEdit.setMaximumSize(QSize(360, 45))
+        self.Password_lineEdit.setFont(font)
+        self.Password_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+        self.Password_lineEdit.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_10.addWidget(self.Password_lineEdit, 0, Qt.AlignHCenter)
+
+        self.loginsignup_container = QFrame(self.start_page)
+        self.loginsignup_container.setObjectName(u"loginsignup_container")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.loginsignup_container.sizePolicy().hasHeightForWidth())
+        self.loginsignup_container.setSizePolicy(sizePolicy1)
+        self.loginsignup_container.setMinimumSize(QSize(300, 50))
+        self.loginsignup_container.setMaximumSize(QSize(0, 0))
+        self.loginsignup_container.setFrameShape(QFrame.NoFrame)
+        self.loginsignup_container.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.loginsignup_container)
+        self.horizontalLayout_15.setSpacing(0)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.login_button = QPushButton(self.loginsignup_container)
+        self.login_button.setObjectName(u"login_button")
+        self.login_button.setMinimumSize(QSize(120, 39))
+        self.login_button.setMaximumSize(QSize(120, 39))
+        self.login_button.setFont(font)
+        self.login_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border: 0px solid;\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.horizontalLayout_15.addWidget(self.login_button, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+        self.signup_button = QPushButton(self.loginsignup_container)
+        self.signup_button.setObjectName(u"signup_button")
+        self.signup_button.setMinimumSize(QSize(120, 39))
+        self.signup_button.setMaximumSize(QSize(120, 39))
+        self.signup_button.setFont(font)
+        self.signup_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border: 0px solid;\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.horizontalLayout_15.addWidget(self.signup_button, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.verticalLayout_10.addWidget(self.loginsignup_container, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer_3)
 
         self.link_container = QFrame(self.start_page)
         self.link_container.setObjectName(u"link_container")
@@ -379,10 +496,12 @@ class Ui_MainWindow(object):
 "	background-color: rgb(35, 35, 35);\n"
 "	border: 0px solid;\n"
 "	border-radius: 22px;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:pressed {\n"
 "	background-color: rgb(45, 45, 45);\n"
 "	border-radius: 22px;\n"
+"	outline: 0;\n"
 "}\n"
 "")
         icon7 = QIcon()
@@ -429,6 +548,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(35, 35, 35);\n"
 "	border-radius: 9px;\n"
 "	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
 "}")
         self.companyInput_lineEdit.setMaxLength(20)
         self.companyInput_lineEdit.setCursorPosition(0)
@@ -445,10 +566,12 @@ class Ui_MainWindow(object):
 "	background-color: rgb(35, 35, 35);\n"
 "	border: 0px solid;\n"
 "	border-radius: 22px;\n"
+"	outline: 0;\n"
 "}\n"
 "QPushButton:pressed {\n"
 "	background-color: rgb(45, 45, 45);\n"
 "	border-radius: 22px;\n"
+"	outline: 0;\n"
 "}\n"
 "")
         icon8 = QIcon()
@@ -514,6 +637,7 @@ class Ui_MainWindow(object):
 "QCheckBox\n"
 "{\n"
 "	color:white;\n"
+"	outline: none;\n"
 "}")
 
         self.horizontalLayout_9.addWidget(self.InputType_checkBox)
@@ -610,11 +734,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.Company_combobox = QComboBox(self.Company_DropDown_parent)
         self.Company_combobox.setObjectName(u"Company_combobox")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.Company_combobox.sizePolicy().hasHeightForWidth())
-        self.Company_combobox.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.Company_combobox.sizePolicy().hasHeightForWidth())
+        self.Company_combobox.setSizePolicy(sizePolicy2)
         self.Company_combobox.setMinimumSize(QSize(320, 45))
         self.Company_combobox.setMaximumSize(QSize(380, 45))
         self.Company_combobox.setFont(font)
@@ -622,6 +746,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(35, 35, 35);\n"
 "	border-radius: 9px;\n"
 "	color: rgb(255, 255, 255);\n"
+"	outline: 0;\n"
+"	padding-left: 12px;\n"
 "}\n"
 "QComboBox::drop-down{\n"
 "	border-width: 0px;\n"
@@ -662,8 +788,8 @@ class Ui_MainWindow(object):
         self.timeframe_combobox.addItem("")
         self.timeframe_combobox.addItem("")
         self.timeframe_combobox.setObjectName(u"timeframe_combobox")
-        sizePolicy1.setHeightForWidth(self.timeframe_combobox.sizePolicy().hasHeightForWidth())
-        self.timeframe_combobox.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.timeframe_combobox.sizePolicy().hasHeightForWidth())
+        self.timeframe_combobox.setSizePolicy(sizePolicy2)
         self.timeframe_combobox.setMinimumSize(QSize(270, 45))
         self.timeframe_combobox.setMaximumSize(QSize(270, 45))
         self.timeframe_combobox.setFont(font)
@@ -671,6 +797,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(35, 35, 35);\n"
 "	border-radius: 9px;\n"
 "	color: rgb(255, 255, 255);\n"
+"	outline: 0;\n"
+"	padding-left: 12px;\n"
 "}\n"
 "QComboBox::drop-down{\n"
 "	border-width: 0px;\n"
@@ -756,15 +884,36 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(15, 0, 0, 0)
+        self.spacingOffset_frame = QFrame(self.bottom_frame)
+        self.spacingOffset_frame.setObjectName(u"spacingOffset_frame")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.spacingOffset_frame.sizePolicy().hasHeightForWidth())
+        self.spacingOffset_frame.setSizePolicy(sizePolicy3)
+        self.spacingOffset_frame.setMinimumSize(QSize(90, 0))
+        self.spacingOffset_frame.setFrameShape(QFrame.StyledPanel)
+        self.spacingOffset_frame.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_5.addWidget(self.spacingOffset_frame)
+
         self.DebugText = QLabel(self.bottom_frame)
         self.DebugText.setObjectName(u"DebugText")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.DebugText.sizePolicy().hasHeightForWidth())
+        self.DebugText.setSizePolicy(sizePolicy4)
         font6 = QFont()
         font6.setFamily(u"Roboto Light")
         font6.setPointSize(10)
         self.DebugText.setFont(font6)
+        self.DebugText.setLayoutDirection(Qt.LeftToRight)
+        self.DebugText.setAutoFillBackground(False)
         self.DebugText.setStyleSheet(u"")
+        self.DebugText.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.horizontalLayout_5.addWidget(self.DebugText)
+        self.horizontalLayout_5.addWidget(self.DebugText, 0, Qt.AlignRight)
 
         self.bottom_framechild = QFrame(self.bottom_frame)
         self.bottom_framechild.setObjectName(u"bottom_framechild")
@@ -818,6 +967,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Graph", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.title_label.setText(QCoreApplication.translate("MainWindow", u"StonkSim_X64", None))
+        self.username_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.Password_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.login_button.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.signup_button.setText(QCoreApplication.translate("MainWindow", u"Sign Up", None))
         self.github_label.setText(QCoreApplication.translate("MainWindow", u"https://github.com/devilb2103/StonkSim_X64", None))
         self.copyToClipBoard_button.setText("")
         self.companyInput_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Company Name", None))
@@ -843,6 +996,6 @@ class Ui_MainWindow(object):
         self.timeframe_combobox.setItemText(5, QCoreApplication.translate("MainWindow", u"All Time", None))
 
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Account", None))
-        self.DebugText.setText("")
+        self.DebugText.setText(QCoreApplication.translate("MainWindow", u"ttesbhethererth", None))
     # retranslateUi
 

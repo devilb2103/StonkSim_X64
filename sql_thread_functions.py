@@ -5,6 +5,7 @@ import yfinance as yf
 import mysql.connector as sql
 import mysql.connector.errors as Error
 from main_thread import *
+import os
 
 additems_list = []
 additems_list_filtered = []
@@ -13,6 +14,7 @@ databaseCompanyList = {}
 con = None
 sqlCur = None
 
+currentTable = ""
 
 class sqlThreadFunctions():
 
@@ -22,6 +24,20 @@ class sqlThreadFunctions():
         con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
         sqlCur = con.cursor()
     
+    def readCurrentTableFromFile(self):
+        global currentTable
+        try:
+            file = open("tableName.txt", "r")
+            text = file.read()
+            currentTable = str(text).split()[0]
+            file.close()
+            os.remove("tableName.txt")
+        except Exception as e:
+            print(e)
+    
+    def getCurrentTable(self):
+        return currentTable
+
     ## CLEARS FIRST LINE OF JSON SO THAT UNICODE CHARS CAN BE REWRITTEN
     def clearFirstLine(self, filename):
         with open(filename) as f: 
@@ -39,16 +55,20 @@ class sqlThreadFunctions():
 
         try:
             with open('companyList.json') as f:
-                data = json.load(f)
-                ##add list
-                add_dict = data['add']
-                additems_list = list(add_dict.items())
-                
-                ##remove list
-                rem_dict = data['remove']
-                remitems_list=list(rem_dict.items())
-                #close    
-                f.close()
+                try:
+                    data = json.load(f)
+                    ##add list
+                    add_dict = data['add']
+                    additems_list = list(add_dict.items())
+                    ##remove list
+                    rem_dict = data['remove']
+                    remitems_list=list(rem_dict.items())
+                    #close
+                    f.close()
+                except json.JSONDecodeError:
+                    print("json decode error")
+                    pass
+
         except FileNotFoundError:
             print("no json file!")
     
@@ -79,8 +99,8 @@ class sqlThreadFunctions():
         additems_list.clear()
 
 
-    def updateRecord(self, ticker, currentPrice, change, changeP, Open, close):
-        cmd = '''UPDATE companydata SET S_CurrentPrice = %s, S_Change = %s, S_ChangeP = %s, S_Open = %s, S_PreviousClose = %s WHERE S_Ticker = %s;'''
+    def updateRecord(self, localTableName, ticker, currentPrice, change, changeP, Open, close):
+        cmd = f"UPDATE {localTableName} SET S_CurrentPrice = %s, S_Change = %s, S_ChangeP = %s, S_Open = %s, S_PreviousClose = %s WHERE S_Ticker = %s;"
         sqlCur.execute(cmd, (currentPrice, change, changeP, Open, close, ticker))
         con.commit()
 
@@ -88,7 +108,7 @@ class sqlThreadFunctions():
         for i in additems_list_filtered:
             companyName = (str(i[0]))
             ticker = i[1]
-            cmd = "INSERT INTO companydata (S_Ticker, S_Company) VALUES(%s,%s)"
+            cmd = f"INSERT INTO {currentTable} (S_Ticker, S_Company) VALUES(%s,%s)"
             try:
                 sqlCur.execute(cmd, (ticker, companyName))
             except Error.IntegrityError as e:
@@ -99,12 +119,13 @@ class sqlThreadFunctions():
     def remove_from_database(self):
         for i in remitems_list:
             company = i[0]
-            cmd = "DELETE FROM companyData WHERE S_Company = '{}';".format(company)
+            cmd = "DELETE FROM {} WHERE S_Company = '{}';".format(currentTable, company)
+            print(currentTable, company)
             sqlCur.execute(cmd)
             con.commit()
     
     def removeNoneCompanies(self):
-        cmd = "DELETE FROM companyData WHERE S_Company = '{}';".format(None)
+        cmd = "DELETE FROM {} WHERE S_Company = '{}';".format(currentTable, None)
         sqlCur.execute(cmd)
         con.commit()
 
@@ -123,8 +144,9 @@ class sqlThreadFunctions():
 
     def refreshDBCompanyDictionary(self):
         global databaseCompanyList
+        global currentTable
         databaseCompanyList.clear()
-        cmd = "select * from companydata;"
+        cmd = f"select * from {currentTable};"
         sqlCur.execute(cmd)
         data = sqlCur.fetchall()
         for i in data:

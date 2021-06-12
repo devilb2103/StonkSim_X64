@@ -1,4 +1,3 @@
-#IMPORTS:-
 import json
 import os
 
@@ -44,6 +43,12 @@ class JSONFuntions():
             print(len(lines))
         with open(filename, "w") as f: 
             f.writelines(lines) #write back 
+
+    def createTableTextFile(self, tableName):
+        file = open("tableName.txt", "a")
+        file.truncate(0)
+        file.write(str(tableName))
+        file.close()
 
     def deleteJson(self):
         os.remove("companyList.json")

@@ -79,7 +79,7 @@
         <widget class="QFrame" name="expand_frame">
          <property name="maximumSize">
           <size>
-           <width>70</width>
+           <width>0</width>
            <height>16777215</height>
           </size>
          </property>
@@ -122,10 +122,11 @@ border: 0px solid</string>
 	color: rgb(255, 255, 255);
 	background-color: rgb(35, 35, 35);
 	border: 0px solid;
+	outline: 0;
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
-}r</string>
+}</string>
             </property>
             <property name="text">
              <string/>
@@ -160,7 +161,8 @@ QPushButton:hover {
              <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
 	background-color: rgb(35, 35, 35);
-	border: 0px solid
+	border: 0px solid;
+	outline: 0;
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
@@ -188,7 +190,8 @@ QPushButton:hover {
              <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
 	background-color: rgb(35, 35, 35);
-	border: 0px solid
+	border: 0px solid;
+	outline: 0;
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
@@ -216,7 +219,8 @@ QPushButton:hover {
              <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
 	background-color: rgb(35, 35, 35);
-	border: 0px solid
+	border: 0px solid;
+	outline: 0;
 }
 QPushButton:hover {
 	background-color: rgb(255, 79, 79);
@@ -309,6 +313,12 @@ QPushButton:hover {
           </property>
           <item alignment="Qt::AlignTop">
            <widget class="QFrame" name="buttonHolder_Frame">
+            <property name="maximumSize">
+             <size>
+              <width>0</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
@@ -347,7 +357,12 @@ QPushButton:hover {
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
-}r</string>
+}
+QPushButton:focus {
+	border: none;
+	outline: none;
+	padding: -1;
+}</string>
                </property>
                <property name="text">
                 <string/>
@@ -383,7 +398,12 @@ QPushButton:hover {
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
-}r</string>
+}
+QPushButton:focus {
+	border: none;
+	outline: none;
+	padding: -1;
+}</string>
                </property>
                <property name="text">
                 <string/>
@@ -419,7 +439,12 @@ QPushButton:hover {
 }
 QPushButton:hover {
 	background-color: rgb(85, 170, 255);
-}r</string>
+}
+QPushButton:focus {
+	border: none;
+	outline: none;
+	padding: -1;
+}</string>
                </property>
                <property name="text">
                 <string/>
@@ -684,10 +709,10 @@ QPushButton:hover {
                <number>0</number>
               </property>
               <property name="topMargin">
-               <number>15</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
-               <number>0</number>
+               <number>70</number>
               </property>
               <property name="bottomMargin">
                <number>21</number>
@@ -697,15 +722,18 @@ QPushButton:hover {
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>40</height>
+                  <height>25</height>
                  </size>
                 </property>
                </spacer>
               </item>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="title_label">
                 <property name="font">
                  <font>
@@ -726,6 +754,232 @@ QPushButton:hover {
               </item>
               <item>
                <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>75</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QLineEdit" name="username_lineEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>320</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>360</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Roboto Thin</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit{
+	background-color: rgb(45, 45, 45);
+	border-radius: 9px;
+	color: rgb(255, 255, 255);
+	padding-left: 12px;
+	outline: 0;
+}</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Username</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>21</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QLineEdit" name="Password_lineEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>320</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>360</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Roboto Thin</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit{
+	background-color: rgb(45, 45, 45);
+	border-radius: 9px;
+	color: rgb(255, 255, 255);
+	padding-left: 12px;
+	outline: 0;
+}</string>
+                </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+                <property name="placeholderText">
+                 <string>Password</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QFrame" name="loginsignup_container">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>300</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QPushButton" name="login_button">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>39</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>39</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Roboto Thin</family>
+                     <pointsize>18</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgb(45, 45, 45);
+	border: 0px solid;
+	border-radius: 9px;
+	outline: 0;
+}
+QPushButton:pressed {
+	background-color: rgb(35, 35, 35);
+	border-radius: 9px;
+	outline: 0;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Login</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QPushButton" name="signup_button">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>39</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>39</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Roboto Thin</family>
+                     <pointsize>18</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgb(45, 45, 45);
+	border: 0px solid;
+	border-radius: 9px;
+	outline: 0;
+}
+QPushButton:pressed {
+	background-color: rgb(35, 35, 35);
+	border-radius: 9px;
+	outline: 0;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Sign Up</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_3">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -816,10 +1070,12 @@ selection-background-color: rgb(35, 35, 35);
 	background-color: rgb(35, 35, 35);
 	border: 0px solid;
 	border-radius: 22px;
+	outline: 0;
 }
 QPushButton:pressed {
 	background-color: rgb(45, 45, 45);
 	border-radius: 22px;
+	outline: 0;
 }
 </string>
                    </property>
@@ -945,6 +1201,8 @@ QPushButton:pressed {
 	background-color: rgb(35, 35, 35);
 	border-radius: 9px;
 	color: rgb(255, 255, 255);
+	padding-left: 12px;
+	outline: 0;
 }</string>
                       </property>
                       <property name="maxLength">
@@ -981,10 +1239,12 @@ QPushButton:pressed {
 	background-color: rgb(35, 35, 35);
 	border: 0px solid;
 	border-radius: 22px;
+	outline: 0;
 }
 QPushButton:pressed {
 	background-color: rgb(45, 45, 45);
 	border-radius: 22px;
+	outline: 0;
 }
 </string>
                       </property>
@@ -1082,6 +1342,7 @@ QCheckBox::indicator:unchecked
 QCheckBox
 {
 	color:white;
+	outline: none;
 }</string>
                       </property>
                       <property name="text">
@@ -1322,6 +1583,8 @@ QTableView::item {
 	background-color: rgb(35, 35, 35);
 	border-radius: 9px;
 	color: rgb(255, 255, 255);
+	outline: 0;
+	padding-left: 12px;
 }
 QComboBox::drop-down{
 	border-width: 0px;
@@ -1413,6 +1676,8 @@ QComboBox QAbstractItemView{
 	background-color: rgb(35, 35, 35);
 	border-radius: 9px;
 	color: rgb(255, 255, 255);
+	outline: 0;
+	padding-left: 12px;
 }
 QComboBox::drop-down{
 	border-width: 0px;
@@ -1618,18 +1883,55 @@ border-radius: 9px;</string>
               <number>0</number>
              </property>
              <item>
+              <widget class="QFrame" name="spacingOffset_frame">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>90</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignRight">
               <widget class="QLabel" name="DebugText">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>Roboto Light</family>
                  <pointsize>10</pointsize>
                 </font>
                </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
                <property name="text">
-                <string/>
+                <string>ttesbhethererth</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
                </property>
               </widget>
              </item>

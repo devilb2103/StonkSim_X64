@@ -36,8 +36,8 @@ class GraphFunctions():
         data = YFcursor.history(period='max')
         return list(round((data['Close'])[0:-1], 2))
 
-    def getCompanyList(self):
-        cmd = "SELECT S_Ticker, S_Company FROM companydata;"
+    def getCompanyList(self, tableName):
+        cmd = f"SELECT S_Ticker, S_Company FROM {tableName};"
         if(sqlCur != None):
             sqlCur.execute(cmd)
             companyList = sqlCur.fetchall()

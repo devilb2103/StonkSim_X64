@@ -2,13 +2,18 @@ import requests
 from PySide2 import QtCore
 import random
 import multiprocessing
+import subprocess
+import threading
 
 from main import *
 from json_functions import *
 from graph_functions import *
+from sql_functions import *
 
 GLOBAL_STATE = 0
 SEARCH_STATE = 0
+
+DBthreadProcess = None
 
 # DEBUG LINE STYLESHEETS
 debugRed = u"color: rgb(255, 84, 84);"
@@ -49,7 +54,6 @@ class UIFunctions(MainWindow):
 
     def toggleMenu(self, maxWidth, enable):
         if enable:
-
             #get the width
             width = self.ui.buttonNames_frame.width()
             maxExtend = maxWidth
@@ -68,6 +72,35 @@ class UIFunctions(MainWindow):
             self.animation.setEndValue(widthExtended)
             self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animation.start()
+    
+    def showSidebar(self, enable):
+        if enable:
+            #get the width
+            width = self.ui.buttonHolder_Frame.width()
+            maxExtend = 70
+
+            #anim
+            self.animation = QPropertyAnimation(self.ui.buttonHolder_Frame, b"maximumWidth")
+            self.animation.setDuration(400)
+            self.animation.setStartValue(width)
+            self.animation.setEndValue(maxExtend)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.start()
+    
+    def showExpandButton(self, enable):
+        if enable:
+            #get the width
+            width = self.ui.expand_frame.width()
+            maxExtend = 70
+
+            #anim
+            self.animation = QPropertyAnimation(self.ui.expand_frame, b"maximumWidth")
+            self.animation.setDuration(400)
+            self.animation.setStartValue(width)
+            self.animation.setEndValue(maxExtend)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.start()
+            self.animation.finished.connect(lambda: UIFunctions.showSidebar(self, True))
 
     def UIDefs(self):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -133,6 +166,7 @@ class UIFunctions(MainWindow):
         self.ui.btn1Label_frame.setStyleSheet(btnLabelFrameSelected)
         self.ui.btn2Label_frame.setStyleSheet(btnLabelFrameUnSelected)
         self.ui.btn3Label_frame.setStyleSheet(btnLabelFrameUnSelected)
+        self.ui.companyInput_lineEdit.clearFocus()
 
     def setPage2(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.graphs_page)
@@ -155,6 +189,39 @@ class UIFunctions(MainWindow):
     def returnWindowState(self):
         return GLOBAL_STATE
 
+    def signUpButtonClick(self):
+        username = self.ui.username_lineEdit.text()
+        password = self.ui.Password_lineEdit.text()
+        if(len(str(username)) < 3):
+            print("Username is too short!")
+            UIFunctions.setDebugLine(self, "Username is too short", debugRed)
+            pass
+        elif(len(str(password)) < 6):
+            print("Password is too short!")
+            UIFunctions.setDebugLine(self, "Password is too short", debugRed)
+            pass
+        else:
+            if((sqlFunctions.createUser(self, username, password)) == True):
+                UIFunctions.loginButtonClick(self)
+            else:
+                print(f"User with username {username} already exists")
+                UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
+        self.ui.username_lineEdit.clear()
+        self.ui.Password_lineEdit.clear()
+    
+    def loginButtonClick(self):
+        username = self.ui.username_lineEdit.text()
+        password = self.ui.Password_lineEdit.text()
+        if(sqlFunctions.checkLoginData(self, username, password)):
+            UIFunctions.initializeProgramBackend(self)
+            UIFunctions.setPage1(self)
+            UIFunctions.showExpandButton(self, True)
+        else:
+            print("incorrect username or password")
+            UIFunctions.setDebugLine(self, "incorrect username or password", debugRed)
+        self.ui.username_lineEdit.clear()
+        self.ui.Password_lineEdit.clear()
+
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
         if(cursorQuery != ""):
@@ -163,6 +230,23 @@ class UIFunctions(MainWindow):
             elif(SEARCH_STATE == 0):
                 JSONFuntions.writeToCompanyList(self, "lol123" + str(random.getrandbits(128)), cursorQuery, True)
         self.ui.companyInput_lineEdit.setText("")
+
+    def initializeProgramBackend(self):
+        global DBthreadProcess
+
+        ## INITIALIZE THE JSON
+        JSONFuntions.createJSON(self)
+        ##INITIALIZE THE DATABASE THREADPROCESS
+        DBthreadProcess = subprocess.Popen(["python", "main_thread.py"])
+        #START THE TABLE REFRESH PROCESS
+        UIFunctions.refreshUItable(self, sqlFunctions.getTableData(UIFunctions, sqlFunctions.getCurrentTable(self)))
+        ## INIT GRAPH WIDGET
+        GraphFunctions.initGraph(self)
+        UIFunctions.refreshGraphDropdown(self)
+        graphDataFetcherThread = threading.Thread(target=GraphFunctions.graphThread, args=(self,))
+        graphDataFetcherThread.start()
+        UIFunctions.plotGraph(self)
+
 
     def setSearchStateCheckboxText(self):
         global SEARCH_STATE
@@ -175,7 +259,7 @@ class UIFunctions(MainWindow):
 
     def setDebugLine(self, content, style):
         self.ui.DebugText.setStyleSheet(style)
-        self.ui.DebugText.setText("Debug: " + str(content))
+        self.ui.DebugText.setText(str(content))
     
     def refreshUItable(self, table):
         self.ui.tableWidget.setRowCount(len(list(table)))
@@ -192,7 +276,7 @@ class UIFunctions(MainWindow):
                     else:
                         ## set text to red
                         self.ui.tableWidget.item(row, column).setBackground(QBrush(QColor(0, 100, 0)))
-        QtCore.QTimer.singleShot(100, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self)))
+        QtCore.QTimer.singleShot(100, lambda: UIFunctions.refreshUItable(self, sqlFunctions.getTableData(self, sqlFunctions.getCurrentTable(self))))
 
     def getSelectedRows(self):
         rows = []
@@ -205,7 +289,7 @@ class UIFunctions(MainWindow):
 
     def refreshGraphDropdown(self):
         GraphFunctions.initDB(GraphFunctions)
-        companyDict = GraphFunctions.getCompanyList(GraphFunctions)
+        companyDict = GraphFunctions.getCompanyList(GraphFunctions, sqlFunctions.getCurrentTable(self))
         companyList = dict(companyDict).keys()
         comboboxList = [self.ui.Company_combobox.itemText(i) for i in range(self.ui.Company_combobox.count())]
 
@@ -227,14 +311,19 @@ class UIFunctions(MainWindow):
     
     def plotGraph(self):
         try:
-            companyDict = GraphFunctions.getCompanyList(GraphFunctions)
+            companyDict = GraphFunctions.getCompanyList(GraphFunctions, sqlFunctions.getCurrentTable(self))
             GraphFunctions.toSearchCursor = companyDict[self.ui.Company_combobox.currentText()]
             GraphFunctions.searchType = self.ui.timeframe_combobox.currentIndex()
         except KeyError:
             pass
 
     def closeProgram(self):
-        JSONFuntions.deleteJson(self)
-        terminatedDBThread = True
-        GraphFunctions.killDataFetcherThread = True
+        try:
+            JSONFuntions.deleteJson(self)
+            DBthreadProcess.terminate()
+            GraphFunctions.killDataFetcherThread = True
+        except FileNotFoundError:
+            pass
+        except AttributeError:
+            pass
         self.close()

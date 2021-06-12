@@ -9,18 +9,19 @@ processList = {}
 
 class mainThread():
 
-    def instantiateCompanyProcess(self, ticker):
-        p = multiprocessing.Process(target=self.companyProcess, args=(self, ticker,))
+    def instantiateCompanyProcess(self, ticker, localTableName):
+        p = multiprocessing.Process(target=self.companyProcess, args=(self, ticker, localTableName))
         p.start()
         processList[str(ticker)] = p
 
-    def companyProcess(self, ticker):
+    def companyProcess(self, ticker, localTableName):
         sqlThreadFunctions.createDBcon(sqlThreadFunctions)
         while True:
             #print(f"running company Process: {ticker}")
             try:
                 result = stockFunctions.returnCompanyDetails(stockFunctions, ticker)
-                sqlThreadFunctions.updateRecord(sqlThreadFunctions, ticker, result[0], result[1], result[2], result[3], result[4])
+                #print(result)
+                sqlThreadFunctions.updateRecord(sqlThreadFunctions, localTableName, ticker, result[0], result[1], result[2], result[3], result[4])
             except Exception as e:
                 print(e)
 
@@ -33,12 +34,15 @@ class mainThread():
                 processList[processName].terminate()
                 processList.pop(processName)
 
+
     #--------------------------------------------------------------------------------------
     def thread_loop(self):
+        ##Wait to recieve the tableName from textfile initialized by frontend
+        sqlThreadFunctions.readCurrentTableFromFile(sqlThreadFunctions)
         
         #CREATE THE SQL CONNECTION FOR THE THREAD
         sqlThreadFunctions.createDBcon(sqlThreadFunctions)
-
+        localTableName = sqlThreadFunctions.getCurrentTable(sqlThreadFunctions)
         #THE MAIN THREAD
         while True:
             #add all company tickers to company dictionary from DB
@@ -53,9 +57,9 @@ class mainThread():
                         if (process.startswith(str(ticker))):
                             canCreateProcess = False
                     if(canCreateProcess):
-                        self.instantiateCompanyProcess(self, ticker)
+                        self.instantiateCompanyProcess(self, ticker, localTableName)
                 else:
-                    self.instantiateCompanyProcess(self, ticker)
+                    self.instantiateCompanyProcess(self, ticker, localTableName)
             
             ##processes are annihilated here
             self.removeProcess(self)
