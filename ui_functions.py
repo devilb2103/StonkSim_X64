@@ -221,6 +221,7 @@ class UIFunctions(MainWindow):
             UIFunctions.setDebugLine(self, "incorrect username or password", debugRed)
         self.ui.username_lineEdit.clear()
         self.ui.Password_lineEdit.clear()
+        self.ui.DebugText.setText("")
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
