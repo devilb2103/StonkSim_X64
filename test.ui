@@ -1928,7 +1928,7 @@ border-radius: 9px;</string>
                 <string notr="true"/>
                </property>
                <property name="text">
-                <string>ttesbhethererth</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignHCenter|Qt::AlignTop</set>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testczwwCU.ui'
+## Form generated from reading UI file 'testfalbYk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -996,6 +996,6 @@ class Ui_MainWindow(object):
         self.timeframe_combobox.setItemText(5, QCoreApplication.translate("MainWindow", u"All Time", None))
 
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Account", None))
-        self.DebugText.setText(QCoreApplication.translate("MainWindow", u"ttesbhethererth", None))
+        self.DebugText.setText("")
     # retranslateUi
 
