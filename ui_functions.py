@@ -9,11 +9,13 @@ from main import *
 from json_functions import *
 from graph_functions import *
 from sql_functions import *
+from mail_functions import *
 
 GLOBAL_STATE = 0
 SEARCH_STATE = 0
 
 DBthreadProcess = None
+loggedInBefore = False
 
 # DEBUG LINE STYLESHEETS
 debugRed = u"color: rgb(255, 84, 84);"
@@ -56,12 +58,11 @@ class UIFunctions(MainWindow):
         if enable:
             #get the width
             width = self.ui.buttonNames_frame.width()
-            maxExtend = maxWidth
             standard = 0
 
             #set the max width
             if width == 0:
-                widthExtended = maxExtend
+                widthExtended = maxWidth
             else:
                 widthExtended = standard
 
@@ -73,34 +74,95 @@ class UIFunctions(MainWindow):
             self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animation.start()
     
-    def showSidebar(self, enable):
+    def toggleMenuLogout(self, maxWidth, enable):
         if enable:
             #get the width
-            width = self.ui.buttonHolder_Frame.width()
-            maxExtend = 70
+            width = self.ui.buttonNames_frame.width()
+            standard = 0
+
+            #set the max width
+            if width == 0:
+                widthExtended = maxWidth
+            else:
+                widthExtended = standard
 
             #anim
-            self.animation = QPropertyAnimation(self.ui.buttonHolder_Frame, b"maximumWidth")
+            self.animation = QPropertyAnimation(self.ui.buttonNames_frame, b"minimumWidth")
             self.animation.setDuration(400)
             self.animation.setStartValue(width)
-            self.animation.setEndValue(maxExtend)
-            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.setEndValue(widthExtended)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animation.start()
+            self.animation.finished.connect(lambda: UIFunctions.toggleExpandButton(self, 70, True))
     
-    def showExpandButton(self, enable):
+    def toggleExpandButton(self, maxWidth, enable):
         if enable:
             #get the width
             width = self.ui.expand_frame.width()
-            maxExtend = 70
+            standard = 0
+
+            #set the max width
+            if width == 0:
+                widthExtended = maxWidth
+            else:
+                widthExtended = standard
 
             #anim
             self.animation = QPropertyAnimation(self.ui.expand_frame, b"maximumWidth")
-            self.animation.setDuration(400)
+            self.animation.setDuration(240)
             self.animation.setStartValue(width)
-            self.animation.setEndValue(maxExtend)
+            self.animation.setEndValue(widthExtended)
             self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
             self.animation.start()
-            self.animation.finished.connect(lambda: UIFunctions.showSidebar(self, True))
+            self.animation.finished.connect(lambda: UIFunctions.toggleSidebar(self, 70, True))
+
+    
+    def toggleSidebar(self, maxWidth, enable):
+        if enable:
+            #get the width
+            width = self.ui.buttonHolder_Frame.width()
+            standard = 0
+
+            #set the max width
+            if width == 0:
+                widthExtended = maxWidth
+            else:
+                widthExtended = standard
+
+            #anim
+            self.animation = QPropertyAnimation(self.ui.buttonHolder_Frame, b"maximumWidth")
+            self.animation.setDuration(240)
+            self.animation.setStartValue(width)
+            self.animation.setEndValue(widthExtended)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.start()
+            self.animation.finished.connect(lambda: UIFunctions.toggleLogoutButton(self, 70, True))
+    
+    def toggleLogoutButton(self, maxWidth, enable):
+        if enable:
+            #get the width
+            width = self.ui.logoutButtonContainer.width()
+            standard = 0
+
+            #set the max width
+            if width == 0:
+                widthExtended = maxWidth
+            else:
+                widthExtended = standard
+
+            #anim
+            self.animation = QPropertyAnimation(self.ui.logoutButtonContainer, b"maximumWidth")
+            self.animation.setDuration(240)
+            self.animation.setStartValue(width)
+            self.animation.setEndValue(widthExtended)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.start()
+    
+    def closeToggleMenuOnLogout(self):
+        if(not(self.ui.buttonNames_frame.width() == 0)):
+            UIFunctions.toggleMenuLogout(self, 120, True)
+        else:
+            UIFunctions.toggleExpandButton(self, 70, True)
 
     def UIDefs(self):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -189,6 +251,9 @@ class UIFunctions(MainWindow):
     def returnWindowState(self):
         return GLOBAL_STATE
 
+    def backToStartPageButtonClick(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
+    
     def signUpButtonClick(self):
         username = self.ui.username_lineEdit.text()
         password = self.ui.Password_lineEdit.text()
@@ -201,27 +266,44 @@ class UIFunctions(MainWindow):
             UIFunctions.setDebugLine(self, "Password is too short", debugRed)
             pass
         else:
-            if((sqlFunctions.createUser(self, username, password)) == True):
+            if(sqlFunctions.checkUserExist(sqlFunctions, username) == False):
+                self.ui.stackedWidget.setCurrentWidget(self.ui.email_page)
+            else:
+                print(f"User with username {username} already exists")
+                UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
+
+    def createAccountButtonClick(self):
+        username = self.ui.username_lineEdit.text()
+        password = self.ui.Password_lineEdit.text()
+        email = self.ui.email_lineEdit.text()
+        if(mailFunctions.checkMailID(mailFunctions, email) == True):
+            if((sqlFunctions.createUser(self, username, password, email)) == True):
                 UIFunctions.loginButtonClick(self)
             else:
                 print(f"User with username {username} already exists")
                 UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
+                self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
         self.ui.username_lineEdit.clear()
         self.ui.Password_lineEdit.clear()
+        self.ui.email_lineEdit.clear()
     
     def loginButtonClick(self):
+        global loggedInBefore
+        if(loggedInBefore):
+            GraphFunctions.dataLine.clear()
+        loggedInBefore = True
         username = self.ui.username_lineEdit.text()
         password = self.ui.Password_lineEdit.text()
         if(sqlFunctions.checkLoginData(self, username, password)):
             UIFunctions.initializeProgramBackend(self)
             UIFunctions.setPage1(self)
-            UIFunctions.showExpandButton(self, True)
+            UIFunctions.toggleExpandButton(self, 70, True)
+            self.ui.DebugText.setText("")
         else:
             print("incorrect username or password")
             UIFunctions.setDebugLine(self, "incorrect username or password", debugRed)
         self.ui.username_lineEdit.clear()
         self.ui.Password_lineEdit.clear()
-        self.ui.DebugText.setText("")
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()
@@ -248,6 +330,15 @@ class UIFunctions(MainWindow):
         graphDataFetcherThread.start()
         UIFunctions.plotGraph(self)
 
+    def logoutUser(self):
+        try:
+            DBthreadProcess.terminate()
+            JSONFuntions.deleteJson(self)
+            GraphFunctions.killDataFetcherThread = True
+        except Exception as e:
+            print(e)
+        UIFunctions.closeToggleMenuOnLogout(self)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
 
     def setSearchStateCheckboxText(self):
         global SEARCH_STATE
@@ -307,7 +398,11 @@ class UIFunctions(MainWindow):
             if(not(i in companyList)):
                 self.ui.Company_combobox.removeItem(loopItem)
             loopItem += 1
-        GraphFunctions.dataLine.setData(GraphFunctions.xData, GraphFunctions.yData)
+        
+        if(len(comboboxList) > 0):
+            GraphFunctions.dataLine.setData(GraphFunctions.xData, GraphFunctions.yData)
+        else:
+            GraphFunctions.dataLine.clear()
         QtCore.QTimer.singleShot(1000, lambda: UIFunctions.refreshGraphDropdown(self))
     
     def plotGraph(self):

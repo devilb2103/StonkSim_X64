@@ -28,8 +28,9 @@ class GraphFunctions():
         sqlCur = con.cursor()
     
     def initGraph(self):
+        GraphFunctions.killDataFetcherThread = False
         self.ui.graph_widget.setBackground(QtGui.QColor(35, 35, 35))
-        GraphFunctions.dataLine = self.ui.graph_widget.plot() #takes 2 lists
+        GraphFunctions.dataLine = self.ui.graph_widget.plot([],[]) #takes 2 lists
 
     def getCurrentPrice(self, ticker):
         YFcursor = yf.Ticker(ticker)

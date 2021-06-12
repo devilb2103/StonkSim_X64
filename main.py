@@ -54,8 +54,12 @@ class MainWindow(QMainWindow):
 
         # START PAGE
         self.ui.copyToClipBoard_button.clicked.connect(lambda: UIFunctions.copyGitLinkToClipboard(self))
+        self.ui.copyToClipBoard_button_2.clicked.connect(lambda: UIFunctions.copyGitLinkToClipboard(self))
         self.ui.signup_button.clicked.connect(lambda: UIFunctions.signUpButtonClick(self))
         self.ui.login_button.clicked.connect(lambda: UIFunctions.loginButtonClick(self))
+        self.ui.createAccount_button.clicked.connect(lambda: UIFunctions.createAccountButtonClick(self))
+        self.ui.backToStartpage_button.clicked.connect(lambda: UIFunctions.backToStartPageButtonClick(self))
+        self.ui.logout_button.clicked.connect(lambda: UIFunctions.logoutUser(self))
 
         # PAGE 1
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
@@ -94,7 +98,10 @@ class MainWindow(QMainWindow):
         ## Escape Key
         if(event.key() == 16777216):
             self.ui.tableWidget.clearSelection()
-            QApplication.focusWidget().clearFocus()
+            try:
+                QApplication.focusWidget().clearFocus()
+            except Exception as e:
+                print(e)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
