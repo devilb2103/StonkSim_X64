@@ -106,7 +106,7 @@ class sqlFunctions():
                         return True
         return False
     
-    def checkUserExist(self, UserName):
+    def checkUserExist(self, UserName, email=None):
         con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
         sqlCur = con.cursor()
         cmd = "show tables;"
@@ -114,13 +114,33 @@ class sqlFunctions():
         username2 = str(UserName).rstrip(" ")
         username2 = username2.lstrip(" ")
         username2 = username2.replace(" ", "_")
+        if(email):
+            email2 = str(email).rstrip(" ")
+            email2 = email2.lstrip(" ")
         tableList = sqlCur.fetchall()
         for i in tableList:
             if(i[0][0:-6] == username2):
-                exist = True
-                print(username2)
-                return True
+                if(email):
+                    cmd = "SELECT * FROM logindata;"
+                    sqlCur.execute(cmd)
+                    userList = sqlCur.fetchall()
+                    for j in userList:
+                        if((j[0] == username2) and j[2] == email2):
+                            return True
+                    return False
+                else:
+                    return True
         return False
+    
+    def changePassword(self, username, password):
+        con = sql.connect(user="root", host="localhost", passwd="password", db="stonksim")
+        sqlCur = con.cursor()
+        username2 = str(username).rstrip(" ")
+        username2 = username2.lstrip(" ")
+        username2 = username2.replace(" ", "_")
+        cmd = f"UPDATE logindata SET L_Password = '{password}' WHERE L_Username = '{username2}';"
+        sqlCur.execute(cmd)
+        con.commit()
     
     def getCurrentTable(self):
         global currentTable
@@ -131,4 +151,6 @@ class sqlFunctions():
         sqlFunctions.initCon(self)
         sqlFunctions.checkForDB(self)
         sqlFunctions.checkForTB(self)
-    
+
+if __name__ == '__main__':
+    print(sqlFunctions.checkUserExist(sqlFunctions, "devilb2103"))

@@ -60,6 +60,12 @@ class MainWindow(QMainWindow):
         self.ui.createAccount_button.clicked.connect(lambda: UIFunctions.createAccountButtonClick(self))
         self.ui.backToStartpage_button.clicked.connect(lambda: UIFunctions.backToStartPageButtonClick(self))
         self.ui.logout_button.clicked.connect(lambda: UIFunctions.logoutUser(self))
+        self.ui.forgotPassword_button.clicked.connect(lambda: UIFunctions.loadForgotPasswordPage(self))
+        
+        # FORGOT PASSWORD PAGE
+        self.ui.backToStartpage_button_2.clicked.connect(lambda: UIFunctions.backToStartPageButtonClick(self))
+        self.ui.sendVerificationCode_button.clicked.connect(lambda: UIFunctions.sendVerificationCodeButtonClick(self))
+        self.ui.changePassword_button.clicked.connect(lambda: UIFunctions.changePasswordButtonClick(self))
 
         # PAGE 1
         self.ui.Page_btn_1.clicked.connect(lambda: UIFunctions.setPage1(self))
@@ -98,6 +104,7 @@ class MainWindow(QMainWindow):
         ## Escape Key
         if(event.key() == 16777216):
             self.ui.tableWidget.clearSelection()
+            UIFunctions.animateNewPasswordContainer(self, 150, True)
             try:
                 QApplication.focusWidget().clearFocus()
             except Exception as e:

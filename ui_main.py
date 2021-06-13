@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'testfjUJnA.ui'
+## Form generated from reading UI file 'testNUNGCB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -440,6 +440,23 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addWidget(self.Password_lineEdit, 0, Qt.AlignHCenter)
 
+        self.forgotPassword_button = QPushButton(self.start_page)
+        self.forgotPassword_button.setObjectName(u"forgotPassword_button")
+        font2 = QFont()
+        font2.setFamily(u"Roboto Thin")
+        font2.setPointSize(10)
+        self.forgotPassword_button.setFont(font2)
+        self.forgotPassword_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border: 0px solid;\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"	padding-top: 9px;\n"
+"}")
+
+        self.verticalLayout_10.addWidget(self.forgotPassword_button, 0, Qt.AlignHCenter)
+
         self.loginsignup_container = QFrame(self.start_page)
         self.loginsignup_container.setObjectName(u"loginsignup_container")
         sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
@@ -519,10 +536,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.github_label = QLabel(self.link_container)
         self.github_label.setObjectName(u"github_label")
-        font2 = QFont()
-        font2.setFamily(u"Roboto Thin")
-        font2.setPointSize(24)
-        self.github_label.setFont(font2)
+        font3 = QFont()
+        font3.setFamily(u"Roboto Thin")
+        font3.setPointSize(24)
+        self.github_label.setFont(font3)
         self.github_label.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "selection-background-color: rgb(35, 35, 35);\n"
 "")
@@ -583,8 +600,8 @@ class Ui_MainWindow(object):
 
         self.email_lineEdit = QLineEdit(self.email_page)
         self.email_lineEdit.setObjectName(u"email_lineEdit")
-        self.email_lineEdit.setMinimumSize(QSize(320, 45))
-        self.email_lineEdit.setMaximumSize(QSize(360, 45))
+        self.email_lineEdit.setMinimumSize(QSize(390, 45))
+        self.email_lineEdit.setMaximumSize(QSize(390, 45))
         self.email_lineEdit.setFont(font)
         self.email_lineEdit.setStyleSheet(u"QLineEdit{\n"
 "	background-color: rgb(45, 45, 45);\n"
@@ -668,7 +685,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.github_label_2 = QLabel(self.link_container_2)
         self.github_label_2.setObjectName(u"github_label_2")
-        self.github_label_2.setFont(font2)
+        self.github_label_2.setFont(font3)
         self.github_label_2.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "selection-background-color: rgb(35, 35, 35);\n"
 "")
@@ -702,6 +719,192 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.addWidget(self.link_container_2, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.stackedWidget.addWidget(self.email_page)
+        self.forgotPassword_page = QWidget()
+        self.forgotPassword_page.setObjectName(u"forgotPassword_page")
+        self.forgotPassword_page.setStyleSheet(u"background-color: rgb(35, 35, 35);")
+        self.verticalLayout_12 = QVBoxLayout(self.forgotPassword_page)
+        self.verticalLayout_12.setSpacing(0)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.verticalLayout_12.setContentsMargins(0, 0, 70, 21)
+        self.verticalSpacer_11 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_11)
+
+        self.title_label_3 = QLabel(self.forgotPassword_page)
+        self.title_label_3.setObjectName(u"title_label_3")
+        self.title_label_3.setFont(font1)
+        self.title_label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.verticalLayout_12.addWidget(self.title_label_3, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_12 = QSpacerItem(20, 45, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_12)
+
+        self.forgotUsername_lineEdit = QLineEdit(self.forgotPassword_page)
+        self.forgotUsername_lineEdit.setObjectName(u"forgotUsername_lineEdit")
+        self.forgotUsername_lineEdit.setMinimumSize(QSize(320, 45))
+        self.forgotUsername_lineEdit.setMaximumSize(QSize(320, 45))
+        self.forgotUsername_lineEdit.setFont(font)
+        self.forgotUsername_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.verticalLayout_12.addWidget(self.forgotUsername_lineEdit, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_13 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_13)
+
+        self.forgotEmail_lineEdit = QLineEdit(self.forgotPassword_page)
+        self.forgotEmail_lineEdit.setObjectName(u"forgotEmail_lineEdit")
+        self.forgotEmail_lineEdit.setMinimumSize(QSize(320, 45))
+        self.forgotEmail_lineEdit.setMaximumSize(QSize(390, 45))
+        self.forgotEmail_lineEdit.setFont(font)
+        self.forgotEmail_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.verticalLayout_12.addWidget(self.forgotEmail_lineEdit, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 21, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_14)
+
+        self.sendVerificationCodeContainer = QFrame(self.forgotPassword_page)
+        self.sendVerificationCodeContainer.setObjectName(u"sendVerificationCodeContainer")
+        self.sendVerificationCodeContainer.setMinimumSize(QSize(0, 0))
+        self.sendVerificationCodeContainer.setFrameShape(QFrame.StyledPanel)
+        self.sendVerificationCodeContainer.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.sendVerificationCodeContainer)
+        self.horizontalLayout_18.setSpacing(10)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.horizontalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.backToStartpage_button_2 = QPushButton(self.sendVerificationCodeContainer)
+        self.backToStartpage_button_2.setObjectName(u"backToStartpage_button_2")
+        self.backToStartpage_button_2.setMinimumSize(QSize(45, 45))
+        self.backToStartpage_button_2.setMaximumSize(QSize(45, 45))
+        self.backToStartpage_button_2.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border: 0px solid;\n"
+"	border-radius: 22px;\n"
+"	outline: 0;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 22px;\n"
+"	outline: 0;\n"
+"}\n"
+"")
+        self.backToStartpage_button_2.setIcon(icon9)
+        self.backToStartpage_button_2.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_18.addWidget(self.backToStartpage_button_2)
+
+        self.sendVerificationCode_button = QPushButton(self.sendVerificationCodeContainer)
+        self.sendVerificationCode_button.setObjectName(u"sendVerificationCode_button")
+        self.sendVerificationCode_button.setMinimumSize(QSize(270, 39))
+        self.sendVerificationCode_button.setMaximumSize(QSize(270, 39))
+        self.sendVerificationCode_button.setFont(font)
+        self.sendVerificationCode_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border: 0px solid;\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.horizontalLayout_18.addWidget(self.sendVerificationCode_button)
+
+
+        self.verticalLayout_12.addWidget(self.sendVerificationCodeContainer, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_15 = QSpacerItem(20, 55, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_15)
+
+        self.newPasswordContainer = QFrame(self.forgotPassword_page)
+        self.newPasswordContainer.setObjectName(u"newPasswordContainer")
+        self.newPasswordContainer.setMaximumSize(QSize(16777215, 150))
+        self.newPasswordContainer.setFrameShape(QFrame.StyledPanel)
+        self.newPasswordContainer.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.newPasswordContainer)
+        self.verticalLayout_13.setSpacing(9)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.verificationCode_lineEdit = QLineEdit(self.newPasswordContainer)
+        self.verificationCode_lineEdit.setObjectName(u"verificationCode_lineEdit")
+        self.verificationCode_lineEdit.setMinimumSize(QSize(320, 45))
+        self.verificationCode_lineEdit.setMaximumSize(QSize(320, 45))
+        self.verificationCode_lineEdit.setFont(font)
+        self.verificationCode_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+        self.verificationCode_lineEdit.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.verticalLayout_13.addWidget(self.verificationCode_lineEdit, 0, Qt.AlignHCenter)
+
+        self.newPassword_lineEdit = QLineEdit(self.newPasswordContainer)
+        self.newPassword_lineEdit.setObjectName(u"newPassword_lineEdit")
+        self.newPassword_lineEdit.setMinimumSize(QSize(320, 45))
+        self.newPassword_lineEdit.setMaximumSize(QSize(320, 45))
+        self.newPassword_lineEdit.setFont(font)
+        self.newPassword_lineEdit.setStyleSheet(u"QLineEdit{\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border-radius: 9px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	padding-left: 12px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.verticalLayout_13.addWidget(self.newPassword_lineEdit, 0, Qt.AlignHCenter)
+
+        self.changePassword_button = QPushButton(self.newPasswordContainer)
+        self.changePassword_button.setObjectName(u"changePassword_button")
+        self.changePassword_button.setMinimumSize(QSize(240, 39))
+        self.changePassword_button.setMaximumSize(QSize(240, 39))
+        self.changePassword_button.setFont(font)
+        self.changePassword_button.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(45, 45, 45);\n"
+"	border: 0px solid;\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(35, 35, 35);\n"
+"	border-radius: 9px;\n"
+"	outline: 0;\n"
+"}")
+
+        self.verticalLayout_13.addWidget(self.changePassword_button, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_12.addWidget(self.newPasswordContainer, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_16 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_16)
+
+        self.stackedWidget.addWidget(self.forgotPassword_page)
         self.table_page = QWidget()
         self.table_page.setObjectName(u"table_page")
         self.verticalLayout_8 = QVBoxLayout(self.table_page)
@@ -773,9 +976,9 @@ class Ui_MainWindow(object):
 
         self.SwitchSearchType_Parent = QFrame(self.Table_page_Topbar)
         self.SwitchSearchType_Parent.setObjectName(u"SwitchSearchType_Parent")
-        font3 = QFont()
-        font3.setFamily(u"Roboto Thin")
-        self.SwitchSearchType_Parent.setFont(font3)
+        font4 = QFont()
+        font4.setFamily(u"Roboto Thin")
+        self.SwitchSearchType_Parent.setFont(font4)
         self.SwitchSearchType_Parent.setStyleSheet(u"")
         self.SwitchSearchType_Parent.setFrameShape(QFrame.NoFrame)
         self.SwitchSearchType_Parent.setFrameShadow(QFrame.Raised)
@@ -785,10 +988,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setContentsMargins(30, 0, 0, 0)
         self.InputType_checkBox = QCheckBox(self.SwitchSearchType_Parent)
         self.InputType_checkBox.setObjectName(u"InputType_checkBox")
-        font4 = QFont()
-        font4.setFamily(u"Roboto Thin")
-        font4.setPointSize(16)
-        self.InputType_checkBox.setFont(font4)
+        font5 = QFont()
+        font5.setFamily(u"Roboto Thin")
+        font5.setPointSize(16)
+        self.InputType_checkBox.setFont(font5)
         self.InputType_checkBox.setStyleSheet(u"QCheckBox::indicator:checked\n"
 "{\n"
 "	border : 2px solid white;\n"
@@ -863,9 +1066,9 @@ class Ui_MainWindow(object):
         __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.tableWidget.setObjectName(u"tableWidget")
-        font5 = QFont()
-        font5.setPointSize(11)
-        self.tableWidget.setFont(font5)
+        font6 = QFont()
+        font6.setPointSize(11)
+        self.tableWidget.setFont(font6)
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
         self.tableWidget.setStyleSheet(u"QTableView{\n"
 "	background-color: rgb(35, 35, 35);\n"
@@ -1050,7 +1253,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.label_6 = QLabel(self.accounts_page)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font2)
+        self.label_6.setFont(font3)
         self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignCenter)
 
@@ -1091,10 +1294,10 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.DebugText.sizePolicy().hasHeightForWidth())
         self.DebugText.setSizePolicy(sizePolicy5)
-        font6 = QFont()
-        font6.setFamily(u"Roboto Light")
-        font6.setPointSize(10)
-        self.DebugText.setFont(font6)
+        font7 = QFont()
+        font7.setFamily(u"Roboto Light")
+        font7.setPointSize(10)
+        self.DebugText.setFont(font7)
         self.DebugText.setLayoutDirection(Qt.LeftToRight)
         self.DebugText.setAutoFillBackground(False)
         self.DebugText.setStyleSheet(u"")
@@ -1135,7 +1338,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1157,6 +1360,7 @@ class Ui_MainWindow(object):
         self.title_label.setText(QCoreApplication.translate("MainWindow", u"StonkSim_X64", None))
         self.username_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.Password_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.forgotPassword_button.setText(QCoreApplication.translate("MainWindow", u"Forgot Password", None))
         self.login_button.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.signup_button.setText(QCoreApplication.translate("MainWindow", u"Sign Up", None))
         self.github_label.setText(QCoreApplication.translate("MainWindow", u"https://github.com/devilb2103/StonkSim_X64", None))
@@ -1167,6 +1371,14 @@ class Ui_MainWindow(object):
         self.backToStartpage_button.setText("")
         self.github_label_2.setText(QCoreApplication.translate("MainWindow", u"https://github.com/devilb2103/StonkSim_X64", None))
         self.copyToClipBoard_button_2.setText("")
+        self.title_label_3.setText(QCoreApplication.translate("MainWindow", u"StonkSim_X64", None))
+        self.forgotUsername_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"UserName", None))
+        self.forgotEmail_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
+        self.backToStartpage_button_2.setText("")
+        self.sendVerificationCode_button.setText(QCoreApplication.translate("MainWindow", u"Send Verification Code", None))
+        self.verificationCode_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Verification Code", None))
+        self.newPassword_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Password", None))
+        self.changePassword_button.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.companyInput_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Company Name", None))
         self.addToTable_pushButton.setText("")
         self.InputType_checkBox.setText(QCoreApplication.translate("MainWindow", u"Search by: Ticker", None))

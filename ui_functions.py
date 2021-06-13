@@ -16,6 +16,7 @@ SEARCH_STATE = 0
 
 DBthreadProcess = None
 loggedInBefore = False
+verificationCode = ""
 
 # DEBUG LINE STYLESHEETS
 debugRed = u"color: rgb(255, 84, 84);"
@@ -158,11 +159,28 @@ class UIFunctions(MainWindow):
             self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
             self.animation.start()
     
+    def animateNewPasswordContainer(self, maxHeight, enable):
+        if enable:
+            #get the height
+            height = self.ui.newPasswordContainer.height()
+
+            #anim
+            self.animation = QPropertyAnimation(self.ui.newPasswordContainer, b"maximumHeight")
+            self.animation.setDuration(400)
+            self.animation.setStartValue(height)
+            self.animation.setEndValue(maxHeight)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.OutCubic)
+            self.animation.start()
+    
     def closeToggleMenuOnLogout(self):
         if(not(self.ui.buttonNames_frame.width() == 0)):
             UIFunctions.toggleMenuLogout(self, 120, True)
         else:
             UIFunctions.toggleExpandButton(self, 70, True)
+
+    def loadForgotPasswordPage(self):
+        self.ui.newPasswordContainer.setMaximumHeight(0)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.forgotPassword_page)
 
     def UIDefs(self):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -258,18 +276,15 @@ class UIFunctions(MainWindow):
         username = self.ui.username_lineEdit.text()
         password = self.ui.Password_lineEdit.text()
         if(len(str(username)) < 3):
-            print("Username is too short!")
             UIFunctions.setDebugLine(self, "Username is too short", debugRed)
             pass
         elif(len(str(password)) < 6):
-            print("Password is too short!")
             UIFunctions.setDebugLine(self, "Password is too short", debugRed)
             pass
         else:
             if(sqlFunctions.checkUserExist(sqlFunctions, username) == False):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.email_page)
             else:
-                print(f"User with username {username} already exists")
                 UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
 
     def createAccountButtonClick(self):
@@ -280,7 +295,6 @@ class UIFunctions(MainWindow):
             if((sqlFunctions.createUser(self, username, password, email)) == True):
                 UIFunctions.loginButtonClick(self)
             else:
-                print(f"User with username {username} already exists")
                 UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
                 self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
         self.ui.username_lineEdit.clear()
@@ -290,7 +304,10 @@ class UIFunctions(MainWindow):
     def loginButtonClick(self):
         global loggedInBefore
         if(loggedInBefore):
-            GraphFunctions.dataLine.clear()
+            try:
+                GraphFunctions.dataLine.clear()
+            except Exception as e:
+                print(e)
         loggedInBefore = True
         username = self.ui.username_lineEdit.text()
         password = self.ui.Password_lineEdit.text()
@@ -300,10 +317,39 @@ class UIFunctions(MainWindow):
             UIFunctions.toggleExpandButton(self, 70, True)
             self.ui.DebugText.setText("")
         else:
-            print("incorrect username or password")
             UIFunctions.setDebugLine(self, "incorrect username or password", debugRed)
         self.ui.username_lineEdit.clear()
         self.ui.Password_lineEdit.clear()
+    
+    def sendVerificationCodeButtonClick(self):
+        global verificationCode
+        username = self.ui.forgotUsername_lineEdit.text()
+        email = self.ui.forgotEmail_lineEdit.text()
+        if(sqlFunctions.checkUserExist(sqlFunctions, username, email)):
+            verificationCode = mailFunctions.sendVerificationMail(self, username, email, mailFunctions.generateVerificationCode(mailFunctions))
+            UIFunctions.setDebugLine(self, f"Email was sent to {email}", debugGreen)
+            UIFunctions.animateNewPasswordContainer(self, 150, True)
+        else:
+            UIFunctions.setDebugLine(self, "username and email do not match", debugRed)
+    
+    def changePasswordButtonClick(self):
+        username = self.ui.forgotUsername_lineEdit.text()
+        newPassword = self.ui.newPassword_lineEdit.text()
+        if(len(newPassword) < 6):
+            UIFunctions.setDebugLine(self, "Password is too short", debugRed)
+        else:
+            if(self.ui.verificationCode_lineEdit.text() == verificationCode):
+                sqlFunctions.changePassword(sqlFunctions, username, newPassword)
+                self.ui.username_lineEdit.clear()
+                self.ui.Password_lineEdit.clear()
+                self.ui.forgotUsername_lineEdit.clear()
+                self.ui.forgotEmail_lineEdit.clear()
+                self.ui.verificationCode_lineEdit.clear()
+                self.ui.newPassword_lineEdit.clear()
+                self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
+                UIFunctions.setDebugLine(self, f"Password for {username} was changed successfully", debugGreen)
+            else:
+                UIFunctions.setDebugLine(self, "Incorrect verification code entered", debugRed)
 
     def onAddCompanyButtonClick(self):
         cursorQuery = self.ui.companyInput_lineEdit.text()

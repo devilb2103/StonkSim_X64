@@ -1,5 +1,4 @@
 from mailjet_rest import Client
-import os
 
 api_key = '9e64d676b099b1ada3532e3a5e87276c'
 api_secret = 'de24dd36a1f0f736077e77b16f76f048'
@@ -14,7 +13,7 @@ data = {
       "To": [
         {
           "Email": "devbhanushali21@gmail.com",
-          "Name": "stonksim"
+          "Name": "user"
         }
       ],
       "Subject": "Greetings from StonkSim.",
@@ -25,5 +24,4 @@ data = {
   ]
 }
 result = mailjet.send.create(data=data)
-print(result.status_code)
-print(result.json())
+print("mail status: " + result.json()["Messages"][0]["Status"])
