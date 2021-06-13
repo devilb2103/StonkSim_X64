@@ -1,11 +1,14 @@
 import random
 import string
+from validate_email import validate_email
 from mailjet_rest import Client
 
 class mailFunctions():
 
     def checkMailID(self, email):
-        return True
+        cleanEmail = str(email).rstrip(" ")
+        cleanEmail = str(cleanEmail).lstrip(" ")
+        return(validate_email(email_address=cleanEmail, check_format=True, check_blacklist=False, check_dns=True, dns_timeout=10, check_smtp=False, smtp_timeout=10))
     
     def generateVerificationCode(self):
         code = "".join(random.choices(string.digits + string.ascii_uppercase, k=8))

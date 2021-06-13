@@ -1,4 +1,3 @@
-
 import multiprocessing
 import mysql.connector as sql
 from sql_thread_functions import *

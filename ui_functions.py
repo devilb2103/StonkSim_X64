@@ -294,12 +294,14 @@ class UIFunctions(MainWindow):
         if(mailFunctions.checkMailID(mailFunctions, email) == True):
             if((sqlFunctions.createUser(self, username, password, email)) == True):
                 UIFunctions.loginButtonClick(self)
+                self.ui.username_lineEdit.clear()
+                self.ui.Password_lineEdit.clear()
             else:
                 UIFunctions.setDebugLine(self, f"User with username {username} already exists", debugRed)
                 self.ui.stackedWidget.setCurrentWidget(self.ui.start_page)
-        self.ui.username_lineEdit.clear()
-        self.ui.Password_lineEdit.clear()
-        self.ui.email_lineEdit.clear()
+        else:
+            UIFunctions.setDebugLine(self, f"Entered email cannot possibly exist", debugRed)
+            self.ui.email_lineEdit.clear()
     
     def loginButtonClick(self):
         global loggedInBefore
@@ -320,6 +322,8 @@ class UIFunctions(MainWindow):
             UIFunctions.setDebugLine(self, "incorrect username or password", debugRed)
         self.ui.username_lineEdit.clear()
         self.ui.Password_lineEdit.clear()
+        self.ui.forgotUsername_lineEdit.clear()
+        self.ui.forgotEmail_lineEdit.clear()
     
     def sendVerificationCodeButtonClick(self):
         global verificationCode
