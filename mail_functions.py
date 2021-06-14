@@ -15,14 +15,14 @@ class mailFunctions():
         return(code)
     
     def sendVerificationMail(self, username, targetMailID, code):
-        api_key = '9e64d676b099b1ada3532e3a5e87276c'
-        api_secret = 'de24dd36a1f0f736077e77b16f76f048'
+        api_key = 'd6904e7bd3a00b4e8e4242357ff46812'
+        api_secret = '13bc15d6b759688f52d701a36d5c0923'
         mailjet = Client(auth=(api_key, api_secret), version='v3.1')
         data = {
             'Messages': [
                 {
                 "From": {
-                    "Email": "stonksimbot@gmail.com",
+                    "Email": "thestonksimbot@gmail.com",
                     "Name": "TheStonkSimBot"
                 },
                 "To": [
